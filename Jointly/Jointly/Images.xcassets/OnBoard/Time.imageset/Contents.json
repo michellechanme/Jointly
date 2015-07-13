@@ -2,18 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "onboarding - time@1x.jpg"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "onboarding - time@2x.jpg"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "onboarding - be present.jpg"
+      "filename" : "noun_7197_cc.png"
     }
   ],
   "info" : {

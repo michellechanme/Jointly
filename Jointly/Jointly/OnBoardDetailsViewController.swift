@@ -19,11 +19,15 @@ class OnBoardDetailsViewController: UIViewController {
     var descriptionText = ""
     var indexInController = 0
     var iconView = 0
+    var isGetStartedButtonHideen = true
+    var image : UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = titleText
         descriptionLabel.text = descriptionText
+        getStartedButton.hidden = isGetStartedButtonHideen
+        imageview.image = image
         
          self.edgesForExtendedLayout = UIRectEdge.None
         // Do any additional setup after loading the view.

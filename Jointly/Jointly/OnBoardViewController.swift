@@ -17,7 +17,7 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
                         "Set a clock for quality time together without devices.",
                         "'Punish' your partner whenever they're distracted by their device.",
                         "Use Jointly and be present with the one who matters most."]
-    var icons = ["focus.png", "clock.png", "flag.png", "couple.png"]
+    var icons = ["focus", "time", "penalize", "BePresent"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +29,23 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         
         self.edgesForExtendedLayout = UIRectEdge.None
         
-        pageViewController.setViewControllers([getItemController(0)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
-        
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMoveToParentViewController(self)
         
         setupPageControl()
         
+        pageViewController.setViewControllers([getItemController(0)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        
         // Do any additional setup after loading the view.
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        
     }
     
     func getItemController(index: Int) -> OnBoardDetailsViewController {
@@ -47,6 +55,13 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         detailsController.descriptionText = descriptions[index]
 
         detailsController.indexInController = index
+        
+        detailsController.image = UIImage(named: icons[index])
+        
+        if index == titles.count - 1 {
+            detailsController.isGetStartedButtonHideen = false
+        }
+        
         
         return detailsController
     }

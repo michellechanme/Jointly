@@ -24,7 +24,14 @@ class LoginViewController: UIViewController {
         digits.logOut()
         digits.authenticateWithCompletion { (session, error) in
             println("\(session)")
+            
         }
+        
+        let digitsAppearance = DGTAppearance()
+        
+        digitsAppearance.backgroundColor = UIColor.darkGrayColor()
+        digitsAppearance.accentColor = UIColor.greenColor()
+        
     }
 
     override func didReceiveMemoryWarning() {
