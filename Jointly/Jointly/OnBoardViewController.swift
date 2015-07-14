@@ -13,9 +13,9 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
     var pageViewController: UIPageViewController!
         
     var titles = ["Focus", "Time", "Penalize", "Be Present"]
-    var descriptions = ["Whenever you want to focus on eachother, create a moment.",
-                        "Set a clock for quality time together without devices.",
-                        "'Punish' your partner whenever they're distracted by their device.",
+    var descriptions = ["Whenever you want to focus on each other, create a moment.",
+                        "Set a clock for quality time together, without devices.",
+                        "'Penalize' your partner whenever they're distracted by their device.",
                         "Use Jointly and be present with the one who matters most."]
     var icons = ["focus", "time", "penalize", "BePresent"]
     

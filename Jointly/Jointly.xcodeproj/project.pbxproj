@@ -19,6 +19,7 @@
 		56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */; };
 		56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A451B4F40E20061BF26 /* OnBoardViewController.swift */; };
 		56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */; };
+		56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56A22A451B4F40E20061BF26 /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardViewController.swift; sourceTree = "<group>"; };
 		56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardDetailsViewController.swift; sourceTree = "<group>"; };
+		56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				56A22A451B4F40E20061BF26 /* OnBoardViewController.swift */,
 				56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */,
 				56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */,
+				56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			files = (
 				56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */,
 				56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */,
+				56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */,
 				56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */,
 				56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */,
 			);
@@ -466,6 +470,7 @@
 				56A22A311B4EE2860061BF26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56A22A321B4EE2860061BF26 /* Build configuration list for PBXNativeTarget "JointlyTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +479,7 @@
 				56A22A341B4EE2860061BF26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

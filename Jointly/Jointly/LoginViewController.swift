@@ -20,17 +20,28 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        
+        
         let digits = Digits.sharedInstance()
         digits.logOut()
-        digits.authenticateWithCompletion { (session, error) in
-            println("\(session)")
-            
-        }
-        
         let digitsAppearance = DGTAppearance()
         
-        digitsAppearance.backgroundColor = UIColor.darkGrayColor()
-        digitsAppearance.accentColor = UIColor.greenColor()
+        func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+            return UIColor(
+                red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                alpha: CGFloat(1.0)
+            )
+        }
+        
+        digitsAppearance.backgroundColor = UIColor.whiteColor()
+        digitsAppearance.accentColor = UIColorFromRGB(0x6B94C8)
+        
+        digits.authenticateWithDigitsAppearance(digitsAppearance, viewController: nil, title: nil) { (session, error) in
+            // Inspect session/error objects
+            
+        }
         
     }
 
