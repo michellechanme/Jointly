@@ -14,14 +14,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-
-        
-        
         let digits = Digits.sharedInstance()
         digits.logOut()
         let digitsAppearance = DGTAppearance()
@@ -40,8 +32,14 @@ class LoginViewController: UIViewController {
         
         digits.authenticateWithDigitsAppearance(digitsAppearance, viewController: nil, title: nil) { (session, error) in
             // Inspect session/error objects
-            
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Onboarded")
+            self.performSegueWithIdentifier("showMoments", sender: self)
         }
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
     }
 

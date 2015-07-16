@@ -19,7 +19,9 @@
 		56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */; };
 		56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A451B4F40E20061BF26 /* OnBoardViewController.swift */; };
 		56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */; };
+		56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */; };
 		56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */; };
+		56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +51,9 @@
 		56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		56A22A451B4F40E20061BF26 /* OnBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardViewController.swift; sourceTree = "<group>"; };
 		56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardDetailsViewController.swift; sourceTree = "<group>"; };
+		56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestPenaltyViewController.swift; sourceTree = "<group>"; };
 		56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +80,7 @@
 		56A22A071B4EE2860061BF26 = {
 			isa = PBXGroup;
 			children = (
-				56A22A361B4EE2C40061BF26 /* Fabric.framework */,
-				56A22A371B4EE2C40061BF26 /* DigitsKit.framework */,
-				56A22A381B4EE2C40061BF26 /* DigitsKitResources.bundle */,
-				56A22A391B4EE2C40061BF26 /* TwitterCore.framework */,
+				56CC755C1B571CAF001CD4BC /* Frameworks */,
 				56A22A121B4EE2860061BF26 /* Jointly */,
 				56A22A281B4EE2860061BF26 /* JointlyTests */,
 				56A22A111B4EE2860061BF26 /* Products */,
@@ -140,8 +141,21 @@
 				56A22A471B4F41360061BF26 /* OnBoardDetailsViewController.swift */,
 				56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */,
 				56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */,
+				56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */,
+				56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		56CC755C1B571CAF001CD4BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56A22A361B4EE2C40061BF26 /* Fabric.framework */,
+				56A22A371B4EE2C40061BF26 /* DigitsKit.framework */,
+				56A22A381B4EE2C40061BF26 /* DigitsKitResources.bundle */,
+				56A22A391B4EE2C40061BF26 /* TwitterCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */,
+				56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */,
 				56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */,
 				56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */,
 				56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */,
@@ -396,6 +412,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/michellechan/Documents/Projects/Jointly/Frameworks/ConvenienceKit/ConvenienceKit/Frameworks,
 				);
 				INFOPLIST_FILE = Jointly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -410,6 +427,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/michellechan/Documents/Projects/Jointly/Frameworks/ConvenienceKit/ConvenienceKit/Frameworks,
 				);
 				INFOPLIST_FILE = Jointly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

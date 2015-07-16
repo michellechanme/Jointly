@@ -1,27 +1,21 @@
 //
-//  Home.swift
+//  SuggestPenalty.swift
 //  Jointly
 //
-//  Created by Michelle Chan on 7/14/15.
+//  Created by Michelle Chan on 7/16/15.
 //  Copyright (c) 2015 Michelle Chan. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class SuggestPenaltyViewController: UIViewController {
     
-    @IBAction func unwindToHome(segue: UIStoryboardSegue) {
-        
-        if let identifier = segue.identifier {
-            println("Identifier \(identifier)")
-        }
-    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
 
     override func didReceiveMemoryWarning() {

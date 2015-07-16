@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Fabric.with([Digits()])
@@ -24,6 +23,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         digitsAppearance.backgroundColor = UIColor.darkGrayColor()
         digitsAppearance.accentColor = UIColor.greenColor()
+        
+        // MARK: checking if user onboarded
+        
+        let isOnboarded: Bool = NSUserDefaults.standardUserDefaults().boolForKey("Onboarded")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // instantiate your desired ViewController
+        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
+        let onboardingViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingVC") as! UIViewController
+        
+        let window = self.window
+        
+        if (isOnboarded) {
+            window!.rootViewController = homeViewController
+            
+        } else {
+            window!.rootViewController = onboardingViewController
+        }
         
         return true
     }
