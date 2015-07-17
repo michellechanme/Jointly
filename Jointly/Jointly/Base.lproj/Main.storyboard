@@ -298,20 +298,29 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name or number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-eK-bvE">
-                                <rect key="frame" x="16" y="86" width="568" height="22"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name or number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DIB-eK-bvE">
+                                <rect key="frame" x="16" y="22" width="568" height="22"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="JnK-Dd-bHc">
+                                <rect key="frame" x="0.0" y="60" width="600" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="PXb-gZ-N8f"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="JnK-Dd-bHc" secondAttribute="centerX" id="13e-dQ-Om1"/>
+                            <constraint firstItem="JnK-Dd-bHc" firstAttribute="top" secondItem="DIB-eK-bvE" secondAttribute="bottom" constant="16" id="3K2-Au-fts"/>
                             <constraint firstItem="unM-Oq-XFC" firstAttribute="top" secondItem="Qle-ro-MoE" secondAttribute="bottom" id="3LB-NJ-y1c"/>
                             <constraint firstItem="eUc-Dx-PyD" firstAttribute="leading" secondItem="uzL-b8-TDd" secondAttribute="leadingMargin" constant="29" id="581-N4-EJL"/>
                             <constraint firstItem="w2E-Kk-EPf" firstAttribute="trailing" secondItem="uzL-b8-TDd" secondAttribute="trailingMargin" id="5dD-t5-LYt"/>
                             <constraint firstItem="DIB-eK-bvE" firstAttribute="top" secondItem="fhy-gc-c6s" secondAttribute="bottom" constant="22" id="7ad-12-8kj"/>
                             <constraint firstItem="DIB-eK-bvE" firstAttribute="trailing" secondItem="uzL-b8-TDd" secondAttribute="trailingMargin" id="8SO-Qc-qDB"/>
+                            <constraint firstAttribute="trailing" secondItem="JnK-Dd-bHc" secondAttribute="trailing" id="8aP-AB-wd8"/>
                             <constraint firstAttribute="centerX" secondItem="w2E-Kk-EPf" secondAttribute="centerX" id="95z-nt-I48"/>
                             <constraint firstItem="DIB-eK-bvE" firstAttribute="leading" secondItem="uzL-b8-TDd" secondAttribute="leadingMargin" id="C06-pl-s21"/>
                             <constraint firstItem="eUc-Dx-PyD" firstAttribute="trailing" secondItem="uzL-b8-TDd" secondAttribute="trailingMargin" constant="-29" id="Dcg-Gt-Mce"/>
@@ -326,6 +335,8 @@
                             <constraint firstItem="w2E-Kk-EPf" firstAttribute="leading" secondItem="uzL-b8-TDd" secondAttribute="leadingMargin" id="REr-D5-alp"/>
                             <constraint firstItem="DIB-eK-bvE" firstAttribute="top" secondItem="lRM-hP-edF" secondAttribute="bottom" constant="2" id="RgZ-ld-uCl"/>
                             <constraint firstItem="eUc-Dx-PyD" firstAttribute="leading" secondItem="uzL-b8-TDd" secondAttribute="leadingMargin" id="SxG-EK-3qZ"/>
+                            <constraint firstItem="JnK-Dd-bHc" firstAttribute="top" secondItem="DIB-eK-bvE" secondAttribute="bottom" constant="26" id="UsX-J1-wr9"/>
+                            <constraint firstItem="JnK-Dd-bHc" firstAttribute="leading" secondItem="uzL-b8-TDd" secondAttribute="leading" id="a0L-9T-WS7"/>
                             <constraint firstAttribute="centerX" secondItem="eUc-Dx-PyD" secondAttribute="centerX" id="eWS-Ws-Ryw"/>
                             <constraint firstItem="unM-Oq-XFC" firstAttribute="top" secondItem="lRM-hP-edF" secondAttribute="bottom" constant="20" id="end-fu-MX6"/>
                             <constraint firstItem="eUc-Dx-PyD" firstAttribute="top" secondItem="MJk-e3-tQS" secondAttribute="bottom" constant="43" id="ltN-cJ-Tww"/>
@@ -527,6 +538,7 @@
         <image name="Home" width="1314" height="1886"/>
         <image name="arrow" width="170" height="341"/>
         <image name="button" width="170" height="170"/>
+        <image name="line" width="320" height="2"/>
         <image name="logo" width="381" height="281"/>
     </resources>
 </document>
