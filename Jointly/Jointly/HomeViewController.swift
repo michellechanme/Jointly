@@ -11,7 +11,6 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {
-        
         if let identifier = segue.identifier {
             println("Identifier \(identifier)")
         }

@@ -2,16 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "noun_86291_cc-1.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "noun_86291_cc@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "noun_86291_cc.png"
+      "filename" : "noun_86291_cc@2x.png"
     }
   ],
   "info" : {

@@ -7,31 +7,102 @@
 //
 
 import UIKit
+import AddressBook
+import QuartzCore
 
-class SuggestPenaltyViewController: UIViewController {
+class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
+    
+    var name : String?
+    var person : ABRecord?
+    
+    @IBOutlet weak var chosenContact: UILabel!
+    @IBOutlet weak var contactImage: UIImageView!
+    @IBOutlet weak var focusButton: UIButton!
+    @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var suggestPenaltyBox: UITextView!
     
     
-
+    @IBAction func detailsButtonTapped(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Penalties", message:
+            "Someone gets “penalized” when they either hit the “give up” button or leave the app for over 5 seconds.", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    enum VerticalAlignment: Int {
+        case Top = 0, Middle, Bottom
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        suggestPenaltyBox.text = "Suggest a penalty.."
+        chosenContact.text = name
 
         // Do any additional setup after loading the view.
+        
+        focusButton.setTitle("Focus on \(name as String!)", forState: .Normal)
+        
+            if (ABPersonHasImageData(person)) {
+                let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
+                let image = UIImage(data: imgData)
+                contactImage.image = image
+            }
+        
+//        self.suggestPenaltyBox.delegate = self
+        
+        // corner radius of SuggestPenaltyBox
+        suggestPenaltyBox.layer.cornerRadius = 4
+        
+        // dismiss keyboard by swiping down
+        var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        swipe.direction = UISwipeGestureRecognizerDirection.Down
+        
+        self.view.addGestureRecognizer(swipe)
+        
+        // resize suggestPenalityBox to size
+        let fixedWidth = suggestPenaltyBox.frame.size.width
+        suggestPenaltyBox.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = suggestPenaltyBox.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = suggestPenaltyBox.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        suggestPenaltyBox.frame = newFrame;
+        
+        // circular image
+//        self.roundingUIView(self.myUIImageView, cornerRadiusParam: 10)
+//        self.roundingUIView(self.myUIViewBackground, cornerRadiusParam: 20)
+        
+        func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
+            var contactImage: UIImageView = UIImageView(image: image)
+            var layer: CALayer = CALayer()
+            layer = contactImage.layer
+            
+            layer.masksToBounds = true
+            layer.cornerRadius = CGFloat(radius)
+            
+            UIGraphicsBeginImageContext(contactImage.bounds.size)
+            layer.renderInContext(UIGraphicsGetCurrentContext())
+            var roundedImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            return roundedImage
+        }
+    }
+    
+    func dismissKeyboard() {
+        self.suggestPenaltyBox.resignFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    // press enter to dismiss keyboard
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(userText: UITextField) -> Bool {
+        userText.resignFirstResponder()
+        return true;
     }
-    */
-
 }

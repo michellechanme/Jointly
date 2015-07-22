@@ -13,7 +13,7 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
     var pageViewController: UIPageViewController!
         
     var titles = ["Focus", "Time", "Penalize", "Be Present"]
-    var descriptions = ["Whenever you want to focus on each other, create a moment.",
+    var descriptions = ["Whenever you want to focus on your partner, create a moment.",
                         "Set a clock for quality time together, without devices.",
                         "'Penalize' your partner whenever they're distracted by their device.",
                         "Use Jointly and be present with the one who matters most."]
@@ -25,7 +25,6 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("OnBoardPageController") as! UIPageViewController
         
         pageViewController.dataSource = self
-        
         self.edgesForExtendedLayout = UIRectEdge.None
         
         addChildViewController(pageViewController)
@@ -42,9 +41,7 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-        
     }
     
 //    func isBoarded() -> Bool {
@@ -63,16 +60,12 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         
         detailsController.titleText = titles[index]
         detailsController.descriptionText = descriptions[index]
-
         detailsController.indexInController = index
-        
         detailsController.image = UIImage(named: icons[index])
         
         if index == titles.count - 1 {
             detailsController.isGetStartedButtonHideen = false
         }
-        
-        
         return detailsController
     }
     
@@ -91,25 +84,21 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let detailsController = viewController as! OnBoardDetailsViewController
-        
         let index = detailsController.indexInController + 1
         
         if index <= titles.count - 1 {
             return getItemController(index)
         }
-        
         return nil
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let detailsController = viewController as! OnBoardDetailsViewController
-        
         let index = detailsController.indexInController - 1
         
         if index >= 0 {
             return getItemController(index)
         }
-        
         return nil
     }
     
@@ -117,18 +106,6 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         let apparance = UIPageControl.appearance()
         apparance.pageIndicatorTintColor = UIColor.lightGrayColor()
         apparance.currentPageIndicatorTintColor = UIColor.whiteColor()
-        apparance.backgroundColor = UIColor.clearColor()        
-        
+        apparance.backgroundColor = UIColor.clearColor()
     }
-
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }
