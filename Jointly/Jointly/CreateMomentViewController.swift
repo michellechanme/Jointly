@@ -34,6 +34,20 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func vibrate() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(addContact.center.x - 2.0, addContact.center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(addContact.center.x + 2.0, addContact.center.y))
+        addContact.layer.addAnimation(animation, forKey: "position")
+    }
+    
+//    @IBAction func checkPerson(sender: AnyObject) {
+//        if self.addContact
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
