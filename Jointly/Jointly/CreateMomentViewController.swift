@@ -166,6 +166,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getUser() {
+        /*
         // Associate the device with a user
         let installation = PFInstallation.currentInstallation()
         installation["user"] = PFUser.currentUser()
@@ -197,24 +198,33 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         ParsePush push = new ParsePush();
         push.setQuery(query);
         push.sendPushInBackground();
-    }
-    
-    func testPush() {
-        let message = "Alert!"
-        let id = "88yhi9j0"
+        */
         
-        var data = [ "title": "Some Title",
-            "alert": message]
-        
-        var userQuery: PFQuery = PFUser.query()
-        userQuery.whereKey("objectId", equalTo: id)
-        var query: PFQuery = PFInstallation.query()
-        query.whereKey("currentUser", matchesQuery: userQuery)
-        
-        var push: PFPush = PFPush()
-        push.setQuery(query)
-        push.setData(data)
-        push.sendPushInBackground()
+        if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
+            if ABMultiValueGetCount(phoneNumbers) > 0 {
+                if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
+                    let userQuery = PFUser.query()!
+                    userQuery.whereKey("phone", equalTo: "+14153104015") // primaryPhone
+                    
+                    println("Local contact has phone number \(primaryPhone)")
+                    
+                    let installationQuery = PFInstallation.query()
+                    installationQuery?.whereKey("user", matchesQuery: userQuery)
+                    let push = PFPush()
+                    push.setQuery(installationQuery);
+                    push.setMessage("Someone would like to focus on you :-)")
+                    push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                        println("Well, at least the push completed. Success? \(success)")
+                    })
+                } else {
+                    println("Could not retrieve user's primary phone number")
+                }
+            } else {
+                println("Contact has no phone numbers")
+            }
+        } else {
+            println("Contact has no phone property")
+        }
     }
 
 }
@@ -233,6 +243,8 @@ extension CreateMomentViewController: ABPeoplePickerNavigationControllerDelegate
         self.person = person
         
         addContact.selected = true
+        
+        getUser()
         
     }
 }

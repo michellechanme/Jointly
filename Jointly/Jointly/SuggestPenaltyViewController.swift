@@ -89,6 +89,14 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
             
             return roundedImage
         }
+        
+        // moves text view when keyboard appears
+        self.suggestPenaltyBox = UITextView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        
+        // Keyboard stuff.
+        var center: NSNotificationCenter = NSNotificationCenter.defaultCenter()
+        center.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        center.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func dismissKeyboard() {
