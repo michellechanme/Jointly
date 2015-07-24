@@ -32,9 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let digitsAppearance = DGTAppearance()
         
-        digitsAppearance.backgroundColor = UIColor.darkGrayColor()
-        digitsAppearance.accentColor = UIColor.greenColor()
-        
         // MARK: checking if user onboarded
         
         let isOnboarded: Bool = NSUserDefaults.standardUserDefaults().boolForKey("Onboarded")
@@ -109,8 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
-        
-        
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -36,9 +36,10 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        suggestPenaltyBox.text = "Suggest a penalty.."
         chosenContact.text = name
-
+        
+        suggestPenaltyBox.text = "Suggest potential penalty for your partner.."
+        
         // Do any additional setup after loading the view.
         
         focusButton.setTitle("Focus on \(name as String!)", forState: .Normal)

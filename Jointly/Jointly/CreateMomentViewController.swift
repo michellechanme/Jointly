@@ -9,6 +9,7 @@
 import UIKit
 import AddressBookUI
 import AddressBook
+import Parse
 
 class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
@@ -43,10 +44,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         animation.toValue = NSValue(CGPoint: CGPointMake(addContact.center.x + 2.0, addContact.center.y))
         addContact.layer.addAnimation(animation, forKey: "position")
     }
-    
-//    @IBAction func checkPerson(sender: AnyObject) {
-//        if self.addContact
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,14 +165,58 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-//    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-//        if identifier == "toSuggestPenality" && person == nil {
-//            return false
-//        } else {
-//            return true
-//        }
-//    }
+    func getUser() {
+        // Associate the device with a user
+        let installation = PFInstallation.currentInstallation()
+        installation["user"] = PFUser.currentUser()
+        installation.saveInBackground()
+        
+        // Create our Installation query
+        let pushQuery = PFInstallation.query()
+        pushQuery.whereKey("dgtsid", equalTo: true)
+        
+        PFUser.query()?.whereKey("dgtsid", equalTo: <#AnyObject#>)
+        
+        // Find devices associated with these users
+        pushQuery.whereKey("user", matchesQuery: userQuery)
+        
+        // Send push notification to query
+        let push = PFPush()
+        push.setQuery(pushQuery) // Set our Installation query
+        push.setMessage("... would like to focus on you :-)")
+        push.sendPushInBackground()
+        
+        // Receiver
+        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+        installation.put("device_id", "1234567890");
+        installation.saveInBackground();
+        
+        // Sender
+        ParseQuery query = ParseInstallation.getQuery();
+        query.whereEqualTo("device_id", "1234567890");
+        ParsePush push = new ParsePush();
+        push.setQuery(query);
+        push.sendPushInBackground();
+    }
     
+    func testPush() {
+        let message = "Alert!"
+        let id = "88yhi9j0"
+        
+        var data = [ "title": "Some Title",
+            "alert": message]
+        
+        var userQuery: PFQuery = PFUser.query()
+        userQuery.whereKey("objectId", equalTo: id)
+        var query: PFQuery = PFInstallation.query()
+        query.whereKey("currentUser", matchesQuery: userQuery)
+        
+        var push: PFPush = PFPush()
+        push.setQuery(query)
+        push.setData(data)
+        push.sendPushInBackground()
+    }
+
 }
 
 // MARK: getting contact's name
