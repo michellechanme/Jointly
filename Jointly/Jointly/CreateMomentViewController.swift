@@ -11,6 +11,17 @@ import AddressBookUI
 import AddressBook
 import Parse
 
+func sanitizePhoneNumber(unfilteredNum: String) -> String {
+    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
+    var filteredNum = String()
+    for char in unfilteredNum.utf16 {
+        if acceptedChars.characterIsMember(char) {
+            filteredNum.append(UnicodeScalar(char))
+        }
+    }
+    return filteredNum
+}
+
 class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func unwindToCreateMoment(segue: UIStoryboardSegue) {
@@ -157,6 +168,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: carrying contact's name to toSuggestPenlity's VC
+   
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "toSuggestPenality") {
             var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
@@ -165,46 +177,19 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: converts Apple's contact to Parse's phone number format :|
+    
     func getUser() {
-        /*
-        // Associate the device with a user
-        let installation = PFInstallation.currentInstallation()
-        installation["user"] = PFUser.currentUser()
-        installation.saveInBackground()
-        
-        // Create our Installation query
-        let pushQuery = PFInstallation.query()
-        pushQuery.whereKey("dgtsid", equalTo: true)
-        
-        PFUser.query()?.whereKey("dgtsid", equalTo: <#AnyObject#>)
-        
-        // Find devices associated with these users
-        pushQuery.whereKey("user", matchesQuery: userQuery)
-        
-        // Send push notification to query
-        let push = PFPush()
-        push.setQuery(pushQuery) // Set our Installation query
-        push.setMessage("... would like to focus on you :-)")
-        push.sendPushInBackground()
-        
-        // Receiver
-        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.put("device_id", "1234567890");
-        installation.saveInBackground();
-        
-        // Sender
-        ParseQuery query = ParseInstallation.getQuery();
-        query.whereEqualTo("device_id", "1234567890");
-        ParsePush push = new ParsePush();
-        push.setQuery(query);
-        push.sendPushInBackground();
-        */
-        
+
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             if ABMultiValueGetCount(phoneNumbers) > 0 {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
                     let userQuery = PFUser.query()!
-                    userQuery.whereKey("phone", equalTo: "+14153104015") // primaryPhone
+                    
+                    // manipulate strings of phone numbers..
+                    
+                    
+                    userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone as! String)) // primaryPhone
                     
                     println("Local contact has phone number \(primaryPhone)")
                     
@@ -226,7 +211,20 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             println("Contact has no phone property")
         }
     }
-
+    
+    // MARK: get timer value
+    
+    var timer: NSTimer?
+    var timerStart: NSDate?
+    
+    func startTimer() {
+        // get current system time
+        self.timerStart = NSDate()
+        
+        // start the timer
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
+    }
+    
 }
 
 // MARK: getting contact's name

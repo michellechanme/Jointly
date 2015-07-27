@@ -21,6 +21,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var suggestPenaltyBox: UITextView!
     
+    var animateDistance = CGFloat()
     
     @IBAction func detailsButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: "Penalties", message:
@@ -30,8 +31,12 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    enum VerticalAlignment: Int {
-        case Top = 0, Middle, Bottom
+    struct MoveKeyboard {
+        static let KEYBOARD_ANIMATION_DURATION : CGFloat = 0.3
+        static let MINIMUM_SCROLL_FRACTION : CGFloat = 0.2;
+        static let MAXIMUM_SCROLL_FRACTION : CGFloat = 0.8;
+        static let PORTRAIT_KEYBOARD_HEIGHT : CGFloat = 216;
+        static let LANDSCAPE_KEYBOARD_HEIGHT : CGFloat = 162;
     }
     
     override func viewDidLoad() {
@@ -90,14 +95,41 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
             return roundedImage
         }
         
-        // moves text view when keyboard appears
-        self.suggestPenaltyBox = UITextView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        // moves keyboard up when text view selected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
-        // Keyboard stuff.
-        var center: NSNotificationCenter = NSNotificationCenter.defaultCenter()
-        center.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        center.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    // moves keyboard up when text view selected
+    func keyboardWillShow(sender: NSNotification) {
+        self.view.frame.origin.y -= 150
+    }
+    func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 150
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        var viewFrame : CGRect = self.view.frame
+        viewFrame.origin.y += animateDistance
+        
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        
+        UIView.setAnimationDuration(NSTimeInterval(MoveKeyboard.KEYBOARD_ANIMATION_DURATION))
+        
+        self.view.frame = viewFrame
+        
+        UIView.commitAnimations()
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        suggestPenaltyBox.resignFirstResponder()
+        return true
+    }
+    
+    // boom done
     
     func dismissKeyboard() {
         self.suggestPenaltyBox.resignFirstResponder()
@@ -106,12 +138,5 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    // press enter to dismiss keyboard
-    
-    func textFieldShouldReturn(userText: UITextField) -> Bool {
-        userText.resignFirstResponder()
-        return true;
     }
 }
