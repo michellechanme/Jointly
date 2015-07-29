@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+         Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
+         PFUser.enableRevocableSessionInBackground()
+        
         //set up push notifications
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
         
@@ -51,8 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = onboardingViewController
         }
         
-        Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
-        
         // Register for Push Notitications
         if application.applicationState != UIApplicationState.Background {
             // Track an app open here if we launch with a push, unless
@@ -78,6 +79,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound
             application.registerForRemoteNotificationTypes(types)
         }
+        
+        if let notificationPayload = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
+            
+            // Create a pointer to the User object
+            let userid = notificationPayload["userid"] as? String
+            let targetUser = PFObject(withoutDataWithClassName: "_User", objectId: userid)
+            
+            // Fetch User object
+            targetUser.fetchIfNeededInBackgroundWithBlock {
+                (object: PFObject?, error:NSError?) -> Void in
+                
+                if error == nil {
+                    // Show MaybeFocusViewController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
+                    
+                    // setting target user for view controller / converting PFObject -> PFUser
+                    vc.targetUser = object as? PFUser
+                    
+                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                    
+//                    let viewController = MaybeFocusViewController()
+//                    let navController =
+//                    self.navController.pushViewController(MaybeFocusViewController.self, animated: true);
+                }
+            }
+        }
+        
         return true
     }
     
@@ -101,11 +130,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(application: UIApplication,  didReceiveRemoteNotification userInfo: [NSObject : AnyObject],  fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
+        
+        if let userid: String = userInfo["userid"] as? String {
+            let targetUser = PFUser(withoutDataWithObjectId: userid)
+//            let targetUser = PFObject(withoutDataWithClassName: "_User", objectId: )
+            targetUser.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+                // Show photo view controller
+                if error != nil {
+                    println(error)
+                    println(object?.objectForKey("username") as? String)
+                    
+                    completionHandler(UIBackgroundFetchResult.Failed)
+                } else if PFUser.currentUser() != nil {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
+                    
+                    // setting target user for view controller / converting PFObject -> PFUser
+                    vc.targetUser = object as? PFUser
+                    
+                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                    completionHandler(UIBackgroundFetchResult.NewData)
+                } else {
+                    completionHandler(UIBackgroundFetchResult.NoData)
+                }
+            }
+        }
+        completionHandler(UIBackgroundFetchResult.NoData)
     }
 
     func applicationWillResignActive(application: UIApplication) {

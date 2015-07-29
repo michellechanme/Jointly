@@ -44,17 +44,6 @@ class OnBoardViewController: UIViewController, UIPageViewControllerDataSource {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
     
-//    func isBoarded() -> Bool {
-//        var settings = NSUserDefaults.standardUserDefaults()
-//        return settings.boolForKey("boardingSetting")
-//    }
-//    
-//    func setBoardedTrue() {
-//        var settings = NSUserDefaults.standardUserDefaults()
-//        settings.setBool(true, forKey: "boardingSetting")
-//        settings.synchronize()
-//    }
-    
     func getItemController(index: Int) -> OnBoardDetailsViewController {
         let detailsController = self.storyboard!.instantiateViewControllerWithIdentifier("OnBoardDetailsViewController") as! OnBoardDetailsViewController
         

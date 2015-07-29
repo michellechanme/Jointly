@@ -11,17 +11,6 @@ import AddressBookUI
 import AddressBook
 import Parse
 
-func sanitizePhoneNumber(unfilteredNum: String) -> String {
-    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
-    var filteredNum = String()
-    for char in unfilteredNum.utf16 {
-        if acceptedChars.characterIsMember(char) {
-            filteredNum.append(UnicodeScalar(char))
-        }
-    }
-    return filteredNum
-}
-
 class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func unwindToCreateMoment(segue: UIStoryboardSegue) {
@@ -46,37 +35,24 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func vibrate() {
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.05
-        animation.repeatCount = 5
-        animation.autoreverses = true
-        animation.fromValue = NSValue(CGPoint: CGPointMake(addContact.center.x - 2.0, addContact.center.y))
-        animation.toValue = NSValue(CGPoint: CGPointMake(addContact.center.x + 2.0, addContact.center.y))
-        addContact.layer.addAnimation(animation, forKey: "position")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         
         person = nil
         
         navBar.tintColor = UIColor.whiteColor()
+        setupBarStyle()
         
         // part of return keyboard
         self.contactTextField.delegate = self
         
-        setupBarStyle()
-        
         // dismiss keyboard by swiping down
         var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
-        
         swipe.direction = UISwipeGestureRecognizerDirection.Down
-        
         self.view.addGestureRecognizer(swipe)
     }
+    
+    // MARK: nav bar style
     
     override func viewDidAppear(animated: Bool) {
          var nav = self.navigationController?.navigationBar
@@ -89,7 +65,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: customFont!], forState: UIControlState.Normal)
     }
     
-    // MARK: nav bar style
     private func setupBarStyle() {
         if let font = UIFont(name: "Avenir", size: 18) {
             UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font]
@@ -135,19 +110,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: press enter to dismiss keyboard
-    
-    func textFieldShouldReturn(userText: UITextField) -> Bool {
-        userText.resignFirstResponder()
-        return true;
-    }
-    
-    func dismissKeyboard() {
-        self.contactTextField.resignFirstResponder()
-    }
-    
-    
+        
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -157,37 +120,13 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         )
     }
     
-    func timerDuration() {
-        countdownTimer.countDownDuration = 180
-    }
-    
-    func getTime() {
-        var timer = NSTimer()
-        var counter = 0
-        
-    }
-    
-    // MARK: carrying contact's name to toSuggestPenlity's VC
-   
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "toSuggestPenality") {
-            var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
-            destinationViewController.name = selectedPerson
-            destinationViewController.person = person
-        }
-    }
-    
     // MARK: converts Apple's contact to Parse's phone number format :|
     
-    func getUser() {
-
+    @IBAction func nextButtonPressed(sender: AnyObject) {
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             if ABMultiValueGetCount(phoneNumbers) > 0 {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
                     let userQuery = PFUser.query()!
-                    
-                    // manipulate strings of phone numbers..
-                    
                     
                     userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone as! String)) // primaryPhone
                     
@@ -196,10 +135,16 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
                     let installationQuery = PFInstallation.query()
                     installationQuery?.whereKey("user", matchesQuery: userQuery)
                     let push = PFPush()
+                    let data = [
+                        "alert" : "\(PFUser.currentUser()?.username) would like to focus on you",
+                        "userid" : PFUser.currentUser()?.objectId ?? ""
+                    ]
                     push.setQuery(installationQuery);
-                    push.setMessage("Someone would like to focus on you :-)")
+                    push.setData(data)
                     push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                        
                         println("Well, at least the push completed. Success? \(success)")
+                        println(error)
                     })
                 } else {
                     println("Could not retrieve user's primary phone number")
@@ -214,6 +159,10 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: get timer value
     
+    func timerDuration() {
+        var timerDuration = countdownTimer.countDownDuration
+    }
+    
     var timer: NSTimer?
     var timerStart: NSDate?
     
@@ -225,6 +174,35 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
     }
     
+    // MARK: carrying contact's name to toSuggestPenlity's VC
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var timerDuration = countdownTimer.countDownDuration
+        
+        if (segue.identifier == "toSuggestPenality") {
+            var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
+            destinationViewController.name = selectedPerson
+            destinationViewController.person = person
+        }
+        
+        if (segue.identifier == "focusing") {
+            var destinationViewController = segue.destinationViewController as! TimerViewController
+            destinationViewController.timer = timerDuration
+            destinationViewController.name = selectedPerson
+        }
+    }
+    
+}
+
+func sanitizePhoneNumber(unfilteredNum: String) -> String {
+    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
+    var filteredNum = String()
+    for char in unfilteredNum.utf16 {
+        if acceptedChars.characterIsMember(char) {
+            filteredNum.append(UnicodeScalar(char))
+        }
+    }
+    return filteredNum
 }
 
 // MARK: getting contact's name
@@ -241,8 +219,5 @@ extension CreateMomentViewController: ABPeoplePickerNavigationControllerDelegate
         self.person = person
         
         addContact.selected = true
-        
-        getUser()
-        
     }
 }

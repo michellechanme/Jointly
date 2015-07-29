@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import QuartzCore
 
-class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
+class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     var name : String?
     var person : ABRecord?
@@ -22,6 +22,8 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var suggestPenaltyBox: UITextView!
     
     var animateDistance = CGFloat()
+    
+    let PLACEHOLDER_TEXT = "Suggest a penalty for your partner.."
     
     @IBAction func detailsButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: "Penalties", message:
@@ -55,8 +57,6 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
                 contactImage.image = image
             }
         
-//        self.suggestPenaltyBox.delegate = self
-        
         // corner radius of SuggestPenaltyBox
         suggestPenaltyBox.layer.cornerRadius = 4
         
@@ -75,31 +75,13 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         suggestPenaltyBox.frame = newFrame;
         
-        // circular image
-//        self.roundingUIView(self.myUIImageView, cornerRadiusParam: 10)
-//        self.roundingUIView(self.myUIViewBackground, cornerRadiusParam: 20)
-        
-        func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
-            var contactImage: UIImageView = UIImageView(image: image)
-            var layer: CALayer = CALayer()
-            layer = contactImage.layer
-            
-            layer.masksToBounds = true
-            layer.cornerRadius = CGFloat(radius)
-            
-            UIGraphicsBeginImageContext(contactImage.bounds.size)
-            layer.renderInContext(UIGraphicsGetCurrentContext())
-            var roundedImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            return roundedImage
-        }
-        
         // moves keyboard up when text view selected
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
     }
+    
+    // MARK: keyboard
     
     // moves keyboard up when text view selected
     func keyboardWillShow(sender: NSNotification) {
@@ -112,25 +94,15 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         var viewFrame : CGRect = self.view.frame
         viewFrame.origin.y += animateDistance
-        
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationBeginsFromCurrentState(true)
-        
         UIView.setAnimationDuration(NSTimeInterval(MoveKeyboard.KEYBOARD_ANIMATION_DURATION))
-        
         self.view.frame = viewFrame
-        
         UIView.commitAnimations()
-        
     }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        suggestPenaltyBox.resignFirstResponder()
-        return true
-    }
-    
-    // boom done
-    
+
+    // swipe to dismiss keyboard
+   
     func dismissKeyboard() {
         self.suggestPenaltyBox.resignFirstResponder()
     }

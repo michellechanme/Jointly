@@ -6,13 +6,21 @@
 //  Copyright (c) 2015 Michelle Chan. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class TimerViewController: UIView {
-    @IBOutlet weak var giveUpButton: UIButton!
-    
-//    override func viewWillAppear(animated: Bool) {
-//        self.navigationController?.navigationBarHidden = true
-//    }
-}
 
+class TimerViewController: UIViewController {
+    
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var giveUpButton: UIButton!
+    @IBOutlet weak var focusingLabel: UILabel!
+    
+    var timer: Double?
+    var name : String?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+}

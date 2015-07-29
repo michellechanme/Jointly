@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		228CCF898398535C2CDEF68F /* libPods-Jointly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51187552BC8A047CB8F5F748 /* libPods-Jointly.a */; };
+		56369B541B67F4020013DEDE /* MaybeFocusingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
 		56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A151B4EE2860061BF26 /* AppDelegate.swift */; };
 		56A22A1B1B4EE2860061BF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A191B4EE2860061BF26 /* Main.storyboard */; };
@@ -37,7 +38,7 @@
 		56BB810A1B60211500BA53EE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BB81081B60211500BA53EE /* Accounts.framework */; };
 		56BB810B1B60211500BA53EE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BB81091B60211500BA53EE /* Social.framework */; };
 		56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */; };
-		56CE421F1B66AE400040DEE8 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE421E1B66AE400040DEE8 /* TimerViewController.swift */; };
+		56CE42251B66F71D0040DEE8 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE42241B66F71D0040DEE8 /* TimerViewController.swift */; };
 		56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */; };
 		56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		51187552BC8A047CB8F5F748 /* libPods-Jointly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jointly.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaybeFocusingViewController.swift; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
 		56647E381B616ED500DE40D7 /* PFUser+Digits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Digits.m"; sourceTree = "<group>"; };
 		56A22A101B4EE2860061BF26 /* Jointly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jointly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +91,7 @@
 		56BB81081B60211500BA53EE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		56BB81091B60211500BA53EE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestPenaltyViewController.swift; sourceTree = "<group>"; };
-		56CE421E1B66AE400040DEE8 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		56CE42241B66F71D0040DEE8 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 		897E20E017482D8EA450412A /* Pods-Jointly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jointly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jointly/Pods-Jointly.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +206,8 @@
 				56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */,
 				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
 				56647E381B616ED500DE40D7 /* PFUser+Digits.m */,
-				56CE421E1B66AE400040DEE8 /* TimerViewController.swift */,
+				56CE42241B66F71D0040DEE8 /* TimerViewController.swift */,
+				56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -404,7 +407,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */,
-				56CE421F1B66AE400040DEE8 /* TimerViewController.swift in Sources */,
+				56369B541B67F4020013DEDE /* MaybeFocusingViewController.swift in Sources */,
+				56CE42251B66F71D0040DEE8 /* TimerViewController.swift in Sources */,
 				56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */,
 				56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */,
 				56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */,

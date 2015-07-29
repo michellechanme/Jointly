@@ -33,12 +33,6 @@ class LoginViewController: UIViewController {
                 self.performSegueWithIdentifier("showMoments", sender: self)
             }
         }
-//        
-//        digits.authenticateWithDigitsAppearance(digitsAppearance, viewController: nil, title: nil) { (session, error) in
-//            // Inspect session/error objects
-//            println(session)
-//            
-//        }
         // Do any additional setup after loading the view.
     }
     
