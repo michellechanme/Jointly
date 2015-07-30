@@ -12,14 +12,18 @@ import Parse
 
 class MaybeFocusViewController: UIViewController {
     
+    @IBOutlet weak var focusLabel: UILabel!
+    @IBOutlet weak var focusImage: UIImageView!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     
+    var name: String?
     var targetUser: PFUser?
+    var toPass: String!
+
     
     override func viewDidLoad() {
-        yesButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
-        noButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        let name = self.name ?? " a friend"
+        focusLabel.text = "Would you like to focus on \(name)?"
     }
-    
 }

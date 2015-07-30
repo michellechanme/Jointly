@@ -96,13 +96,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
-                    vc.targetUser = object as? PFUser
+                    let name = object?.valueForKey("firstName") as? String ?? "Someone"
+                    vc.name = name
                     
                     self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
-                    
-//                    let viewController = MaybeFocusViewController()
-//                    let navController =
-//                    self.navController.pushViewController(MaybeFocusViewController.self, animated: true);
                 }
             }
         }
@@ -159,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
             }
-        }
+        }   
         completionHandler(UIBackgroundFetchResult.NoData)
     }
 

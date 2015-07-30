@@ -20,10 +20,16 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var focusButton: UIButton!
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var suggestPenaltyBox: UITextView!
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
+    @IBAction func unwindToCreateMoment(sender: AnyObject) {
+    }
     
     var animateDistance = CGFloat()
     
     let PLACEHOLDER_TEXT = "Suggest a penalty for your partner.."
+    
+    // Details button alert
     
     @IBAction func detailsButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: "Penalties", message:
@@ -32,6 +38,8 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    // For moving text view up when keyboard selected
     
     struct MoveKeyboard {
         static let KEYBOARD_ANIMATION_DURATION : CGFloat = 0.3
@@ -51,11 +59,14 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         
         focusButton.setTitle("Focus on \(name as String!)", forState: .Normal)
         
-            if (ABPersonHasImageData(person)) {
-                let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
-                let image = UIImage(data: imgData)
-                contactImage.image = image
-            }
+        if (ABPersonHasImageData(person)) {
+            let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
+            let image = UIImage(data: imgData)
+            contactImage.image = image
+            setPictureDesign(contactImage)
+        } else {
+            
+        }
         
         // corner radius of SuggestPenaltyBox
         suggestPenaltyBox.layer.cornerRadius = 4
@@ -110,5 +121,13 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Create circular image
+    
+    func setPictureDesign(image: UIImageView){
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.layer.masksToBounds = true
+        image.layer.borderWidth = 0;
     }
 }

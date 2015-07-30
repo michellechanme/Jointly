@@ -25,6 +25,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
 
+    var firstNameContact: String?
     var selectedPerson : String?
     var navBar:UINavigationBar = UINavigationBar()
     
@@ -135,17 +136,24 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
                     let installationQuery = PFInstallation.query()
                     installationQuery?.whereKey("user", matchesQuery: userQuery)
                     let push = PFPush()
-                    let data = [
-                        "alert" : "\(PFUser.currentUser()?.username) would like to focus on you",
-                        "userid" : PFUser.currentUser()?.objectId ?? ""
-                    ]
-                    push.setQuery(installationQuery);
-                    push.setData(data)
-                    push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
-                        
-                        println("Well, at least the push completed. Success? \(success)")
-                        println(error)
-                    })
+                    
+//                    let kABPersonFirstNameProperty: ABPropertyID = kABPersonFirstNameProperty()
+                    
+                    if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
+                        let currentUserName = PFUser.currentUser()?.valueForKey("firstName") as? String ?? "Someone"
+                        let data = [
+                            "alert" : currentUserName + " would like to focus on you",
+                            //                        "alert" : "\(PFUser.currentUser()?.username) would like to focus on you",
+                            "userid" : PFUser.currentUser()?.objectId ?? ""
+                        ]
+                        push.setQuery(installationQuery);
+                        push.setData(data)
+                        push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                            
+                            println("Well, at least the push completed. Success? \(success)")
+                            println(error)
+                        })
+                    }
                 } else {
                     println("Could not retrieve user's primary phone number")
                 }
@@ -174,7 +182,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
     }
     
-    // MARK: carrying contact's name to toSuggestPenlity's VC
+    // MARK: carrying contact's name to toSuggestPenlity's VC + other VCs
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var timerDuration = countdownTimer.countDownDuration
@@ -183,6 +191,11 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
+        }
+        
+        if (segue.identifier == "MaybeFocusViewController") {
+            var destinationViewController = segue.destinationViewController as! MaybeFocusViewController
+            destinationViewController.name = selectedPerson
         }
         
         if (segue.identifier == "focusing") {
