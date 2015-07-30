@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
-                    let name = object?.valueForKey("firstName") as? String ?? "Someone"
+                    let name = object?.valueForKey("name") as? String ?? "Someone"
                     vc.name = name
                     
                     self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)

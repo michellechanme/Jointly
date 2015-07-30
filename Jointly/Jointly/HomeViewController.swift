@@ -22,6 +22,10 @@ class HomeViewController: UIViewController {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

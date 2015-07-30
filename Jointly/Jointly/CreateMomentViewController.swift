@@ -142,10 +142,9 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
 //                    let kABPersonFirstNameProperty: ABPropertyID = kABPersonFirstNameProperty()
                     
                     if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
-                        let currentUserName = PFUser.currentUser()?.valueForKey("firstName") as? String ?? "Someone"
+                        let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
                         let data = [
                             "alert" : currentUserName + " would like to focus on you",
-                            //                        "alert" : "\(PFUser.currentUser()?.username) would like to focus on you",
                             "userid" : PFUser.currentUser()?.objectId ?? ""
                         ]
                         push.setQuery(installationQuery);
