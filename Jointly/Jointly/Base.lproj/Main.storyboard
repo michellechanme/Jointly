@@ -144,12 +144,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="UVN-wE-xWO"/>
                     <connections>
-                        <segue destination="M0g-g3-9ZR" kind="showDetail" identifier="showMoments" id="YIC-nV-gC1"/>
+                        <segue destination="Z0n-hm-cYD" kind="show" identifier="namePrompt" id="XOm-la-Xrt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3007" y="-496"/>
+            <point key="canvasLocation" x="-3027" y="-532"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="0P0-dn-XbF">
@@ -232,7 +232,7 @@
         <!--User Info View Controller-->
         <scene sceneID="43a-PH-lOC">
             <objects>
-                <viewController id="Z0n-hm-cYD" customClass="UserInfoViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="namePrompt" id="Z0n-hm-cYD" customClass="UserInfoViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mO7-gt-DuR"/>
                         <viewControllerLayoutGuide type="bottom" id="Z2U-0k-b2v"/>
@@ -241,7 +241,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, what's your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uw-Dl-Pgp" userLabel="namePrompt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hello, what's your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uw-Dl-Pgp" userLabel="namePrompt">
                                 <rect key="frame" x="25" y="78" width="551" height="81"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="551" id="Awm-8G-Brr"/>
@@ -251,18 +251,19 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wyx-XZ-ikR" userLabel="nameTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wyx-XZ-ikR" userLabel="nameTextField">
                                 <rect key="frame" x="187" y="167" width="226" height="30"/>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="UXt-eo-hX6"/>
                                     <constraint firstAttribute="width" constant="226" id="Ylg-7F-x2V"/>
                                 </constraints>
-                                <color key="textColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fG-ch-h6B">
-                                <rect key="frame" x="187" y="217" width="226" height="36"/>
+                                <rect key="frame" x="187" y="249" width="226" height="36"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Go">
@@ -274,6 +275,10 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goPressed:" destination="Z0n-hm-cYD" eventType="touchUpInside" id="Ze9-E4-wZi"/>
+                                    <segue destination="M0g-g3-9ZR" kind="show" identifier="showMoments" id="zbq-do-3G6"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -294,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ye2-tB-Zxe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2231" y="-72"/>
+            <point key="canvasLocation" x="-2235" y="-524"/>
         </scene>
         <!--MaybeFocusViewController-->
         <scene sceneID="zJE-8p-bOK">
@@ -834,6 +839,6 @@
         <image name="x" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YIC-nV-gC1"/>
+        <segue reference="zbq-do-3G6"/>
     </inferredMetricsTieBreakers>
 </document>

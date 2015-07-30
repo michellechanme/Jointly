@@ -17,8 +17,7 @@ class LoginViewController: UIViewController {
         let digits = Digits.sharedInstance()
         digits.logOut()
         
-        PFUser.loginWithDigitsInBackground {
-            (user: PFUser!, error: NSError!) -> () in
+        PFUser.loginWithDigitsInBackground {(user: PFUser!, error: NSError!) -> () in
             if (error == nil) {
                 
                 let installation = PFInstallation.currentInstallation()
@@ -29,11 +28,9 @@ class LoginViewController: UIViewController {
                 
                 installation.saveInBackground()
                 
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Onboarded")
-                self.performSegueWithIdentifier("showMoments", sender: self)
+                self.performSegueWithIdentifier("namePrompt", sender: self)
             }
         }
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {

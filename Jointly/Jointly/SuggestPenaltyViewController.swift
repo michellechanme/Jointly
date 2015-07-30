@@ -69,7 +69,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         }
         
         // corner radius of SuggestPenaltyBox
-        suggestPenaltyBox.layer.cornerRadius = 4
+        suggestPenaltyBox.layer.cornerRadius = 5
         
         // dismiss keyboard by swiping down
         var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")

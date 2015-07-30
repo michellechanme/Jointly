@@ -39,6 +39,8 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
         person = nil
         
         navBar.tintColor = UIColor.whiteColor()
