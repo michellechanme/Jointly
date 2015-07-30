@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import Parse
 
-class UserInfoViewController: UIViewController {
+class UserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var namePrompt: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var goButton: UIButton!
@@ -28,6 +29,7 @@ class UserInfoViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         // corner radius of goButton
         goButton.layer.cornerRadius = 4
+//        goButton.enabled = (nameTextField != nil)
         
         nameTextField.becomeFirstResponder()
         let border = CALayer()
@@ -38,5 +40,25 @@ class UserInfoViewController: UIViewController {
         border.borderWidth = width
         nameTextField.layer.addSublayer(border)
         nameTextField.layer.masksToBounds = true
+        
+        textValueChanged(nameTextField)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    @IBAction func textValueChanged(sender: AnyObject) {
+        // checking if text field has a value
+        if nameTextField.text.isEmpty {
+            goButton.enabled = false
+        } else {
+            goButton.enabled = true
+        }
+    }
+    
+    func storeName() {
+        var name = PFObject(className: "name")
+        name.saveInBackground()
     }
 }

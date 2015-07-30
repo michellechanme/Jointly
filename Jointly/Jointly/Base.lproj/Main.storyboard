@@ -259,8 +259,11 @@
                                     <constraint firstAttribute="width" constant="226" id="Ylg-7F-x2V"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textValueChanged:" destination="Z0n-hm-cYD" eventType="editingChanged" id="9zu-Lg-beh"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8fG-ch-h6B">
                                 <rect key="frame" x="187" y="249" width="226" height="36"/>
@@ -291,6 +294,7 @@
                             <constraint firstItem="0uw-Dl-Pgp" firstAttribute="top" secondItem="mO7-gt-DuR" secondAttribute="bottom" constant="58" id="OVy-km-IhK"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="goButton" destination="8fG-ch-h6B" id="G5y-SC-YcS"/>
                         <outlet property="namePrompt" destination="0uw-Dl-Pgp" id="Qr9-ca-icA"/>
