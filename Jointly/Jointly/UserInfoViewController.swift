@@ -17,7 +17,12 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func goPressed(sender: AnyObject) {
-//        self.performSegueWithIdentifier("showMoments", sender: self)
+        
+        // checking if we have current user. if so, save them!
+        if let user = PFUser.currentUser() {
+            user.setValue(nameTextField.text, forKey: "name")
+            user.saveInBackground()
+        }
     }
     
     override func viewDidLoad() {
@@ -57,8 +62,5 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func storeName() {
-        var name = PFObject(className: "name")
-        name.saveInBackground()
-    }
+    
 }

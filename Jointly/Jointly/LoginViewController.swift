@@ -26,9 +26,17 @@ class LoginViewController: UIViewController {
                     installation["user"] = user
                 }
                 
-                installation.saveInBackground()
+                installation.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+                    if let error = error {
+                        print(error)
+                    }
+                    
+                    print("Installation Success: \(success)")
+                })
                 
                 self.performSegueWithIdentifier("namePrompt", sender: self)
+            } else {
+                print(error)
             }
         }
     }

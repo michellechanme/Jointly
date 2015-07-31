@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
          Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
-         PFUser.enableRevocableSessionInBackground()
+//         PFUser.enableRevocableSessionInBackground()
         
         //set up push notifications
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
@@ -98,8 +98,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // setting target user for view controller / converting PFObject -> PFUser
                     let name = object?.valueForKey("name") as? String ?? "Someone"
                     vc.name = name
+
+                    self.window!.makeKeyAndVisible()
+                    self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
                     
-                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
                 }
             }
         }
@@ -133,6 +135,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         }
         
+        println("Current user is \(PFUser.currentUser()) and the token:\(PFUser.currentUser()?.sessionToken)")
+        
         if let userid: String = userInfo["userid"] as? String {
             let targetUser = PFUser(withoutDataWithObjectId: userid)
 //            let targetUser = PFObject(withoutDataWithClassName: "_User", objectId: )
@@ -150,7 +154,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // setting target user for view controller / converting PFObject -> PFUser
                     vc.targetUser = object as? PFUser
                     
-                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+                    if let navController = self.window!.rootViewController as? UINavigationController {
+                        navController.setViewControllers([vc], animated: true)
+                    } else {
+                        self.window!.rootViewController = vc
+                    }
+                    
+//                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
                     completionHandler(UIBackgroundFetchResult.NewData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)

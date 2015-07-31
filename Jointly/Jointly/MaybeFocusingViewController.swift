@@ -20,10 +20,13 @@ class MaybeFocusViewController: UIViewController {
     var name: String?
     var targetUser: PFUser?
     var toPass: String!
-
+    
+    let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
     
     override func viewDidLoad() {
-        let name = self.name ?? " a friend"
-        focusLabel.text = "Would you like to focus on \(name)?"
+        let name = self.name ?? "a friend"
+        focusLabel.text = "Would like to focus on " + currentUserName + "?"
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
