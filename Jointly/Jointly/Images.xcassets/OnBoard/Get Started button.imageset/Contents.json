@@ -2,20 +2,22 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "giveupbuttoncopy2.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "giveupbuttoncopy2@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "give up button copy 2.png"
+      "filename" : "giveupbuttoncopy2@3x.png"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode"
+    "author" : "silver-ux"
   }
 }

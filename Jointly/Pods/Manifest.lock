@@ -1,0 +1,12 @@
+PODS:
+  - FlurrySDK (6.6.0):
+    - FlurrySDK/FlurrySDK (= 6.6.0)
+  - FlurrySDK/FlurrySDK (6.6.0)
+
+DEPENDENCIES:
+  - FlurrySDK
+
+SPEC CHECKSUMS:
+  FlurrySDK: 8478625434c06b323338f776758162756d92c3ed
+
+COCOAPODS: 0.37.2

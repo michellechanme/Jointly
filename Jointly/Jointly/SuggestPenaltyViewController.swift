@@ -11,7 +11,7 @@ import AddressBook
 import QuartzCore
 
 class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
-    
+
     var name : String?
     var person : ABRecord?
     
@@ -26,6 +26,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     var animateDistance = CGFloat()
+    var timerDuration: Double = 0.0
     
     let PLACEHOLDER_TEXT = "Suggest a penalty for your partner.."
     
@@ -129,5 +130,13 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
         image.layer.borderWidth = 0;
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "focusing") {
+            var destinationViewController = segue.destinationViewController as! TimerViewController
+            destinationViewController.timerDuration = timerDuration
+        }
     }
 }

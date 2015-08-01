@@ -10,6 +10,7 @@ import UIKit
 import AddressBookUI
 import AddressBook
 import Parse
+import Foundation
 
 class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
@@ -168,9 +169,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: get timer value
     
-    func timerDuration() {
-        var timerDuration = countdownTimer.countDownDuration
-    }
     
     var timer: NSTimer?
     var timerStart: NSDate?
@@ -192,18 +190,17 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
+            destinationViewController.timerDuration = countdownTimer.countDownDuration
+
+            
         }
         
         if (segue.identifier == "MaybeFocusViewController") {
             var destinationViewController = segue.destinationViewController as! MaybeFocusViewController
             destinationViewController.name = selectedPerson
+            destinationViewController.person = person
         }
         
-        if (segue.identifier == "focusing") {
-            var destinationViewController = segue.destinationViewController as! TimerViewController
-            destinationViewController.timer = timerDuration
-            destinationViewController.name = selectedPerson
-        }
     }
     
 }

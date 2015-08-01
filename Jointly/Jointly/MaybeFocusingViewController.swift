@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import Parse
+import AddressBookUI
+import AddressBook
 
 class MaybeFocusViewController: UIViewController {
     
@@ -18,6 +20,7 @@ class MaybeFocusViewController: UIViewController {
     @IBOutlet weak var noButton: UIButton!
     
     var name: String?
+    var person: ABRecord?
     var targetUser: PFUser?
     var toPass: String!
     
@@ -27,6 +30,23 @@ class MaybeFocusViewController: UIViewController {
         let name = self.name ?? "a friend"
         focusLabel.text = "Would like to focus on " + currentUserName + "?"
         
+        if (ABPersonHasImageData(person)) {
+            let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
+            let image = UIImage(data: imgData)
+            focusImage.image = image
+            setPictureDesign(focusImage)
+        } else {
+            
+        }
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    // Create circular image
+    
+    func setPictureDesign(image: UIImageView){
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.layer.masksToBounds = true
+        image.layer.borderWidth = 0;
     }
 }

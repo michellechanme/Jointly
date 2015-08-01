@@ -40,6 +40,7 @@
 		56BB810B1B60211500BA53EE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BB81091B60211500BA53EE /* Social.framework */; };
 		56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */; };
 		56CE42251B66F71D0040DEE8 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE42241B66F71D0040DEE8 /* TimerViewController.swift */; };
+		56FE6DB61B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FE6DB51B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift */; };
 		56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */; };
 		56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		56BB81091B60211500BA53EE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestPenaltyViewController.swift; sourceTree = "<group>"; };
 		56CE42241B66F71D0040DEE8 /* TimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		56FE6DB51B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveSuggestPenaltyViewController.swift; sourceTree = "<group>"; };
 		56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMomentViewController.swift; sourceTree = "<group>"; };
 		897E20E017482D8EA450412A /* Pods-Jointly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jointly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Jointly/Pods-Jointly.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
 				56647E381B616ED500DE40D7 /* PFUser+Digits.m */,
 				56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */,
+				56FE6DB51B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift */,
 				56CE42241B66F71D0040DEE8 /* TimerViewController.swift */,
 			);
 			name = "View Controllers";
@@ -414,6 +417,7 @@
 				56CE42251B66F71D0040DEE8 /* TimerViewController.swift in Sources */,
 				56FFD4421B55C570002AC02E /* CreateMomentViewController.swift in Sources */,
 				56A22A481B4F41360061BF26 /* OnBoardDetailsViewController.swift in Sources */,
+				56FE6DB61B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift in Sources */,
 				5637B5FD1B6A800200A3DDA8 /* UserInfoViewController.swift in Sources */,
 				56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */,
 				56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */,

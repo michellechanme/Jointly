@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rZv-hT-5KY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="M0g-g3-9ZR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -317,7 +317,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Would you like to focus on (name)?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nac-rx-4q9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Would you like to focus on (name)?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nac-rx-4q9">
                                 <rect key="frame" x="32" y="42" width="537" height="101"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="101" id="giK-nS-SzR"/>
@@ -346,6 +346,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="xSh-Gg-9Gr" kind="show" id="zmb-cg-OY7"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dmx-63-OmL">
                                 <rect key="frame" x="194" y="193" width="212" height="223"/>
@@ -389,6 +392,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ehn-Ki-bNW"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="focusLabel" destination="Nac-rx-4q9" id="c7q-Mg-W5j"/>
                         <outlet property="noButton" destination="1QB-IK-Cgb" id="pMc-7v-dhL"/>
@@ -484,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-DP-jIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="225"/>
+            <point key="canvasLocation" x="1572" y="225"/>
         </scene>
         <!--Create Moment View Controller-->
         <scene sceneID="0vu-yT-Pbj">
@@ -559,8 +563,8 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
-                                <rect key="frame" x="0.0" y="153" width="600" height="162"/>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
+                                <rect key="frame" x="0.0" y="153" width="600" height="180"/>
                                 <color key="backgroundColor" red="0.41960784309999999" green="0.58039215690000001" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="dsO-q8-KV8"/>
@@ -669,7 +673,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gIN-dn-Oq6" kind="show" id="Wub-VU-9gq"/>
+                                    <segue destination="gIN-dn-Oq6" kind="show" identifier="focusing" id="Wub-VU-9gq"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cu1-M2-7Wp">
@@ -811,10 +815,10 @@
             </objects>
             <point key="canvasLocation" x="85" y="-524"/>
         </scene>
-        <!--View Controller-->
+        <!--Receive Suggest Penalty View Controller-->
         <scene sceneID="GXV-Hf-aGu">
             <objects>
-                <viewController id="xSh-Gg-9Gr" sceneMemberID="viewController">
+                <viewController id="xSh-Gg-9Gr" customClass="ReceiveSuggestPenaltyViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Pl-K4-VYi"/>
                         <viewControllerLayoutGuide type="bottom" id="Kh7-Wq-vsS"/>
@@ -822,8 +826,50 @@
                     <view key="view" contentMode="scaleToFill" id="sks-2G-ldF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hr4-Xq-aFH">
+                                <rect key="frame" x="239" y="87" width="123" height="123"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(name)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnX-p5-rdm">
+                                <rect key="frame" x="274" y="226" width="52" height="21"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DetailDisclosureCopy" translatesAutoresizingMaskIntoConstraints="NO" id="yvX-oW-4ra">
+                                <rect key="frame" x="547" y="87" width="37" height="37"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Placeholder" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="H55-1H-jzV">
+                                <rect key="frame" x="27" y="298" width="547" height="109"/>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="“Penalize” your partner whenever they get distracted by their device." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gi-Ah-rsq">
+                                <rect key="frame" x="27" y="424" width="547" height="84"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <color key="textColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTv-2U-g2X">
+                                <rect key="frame" x="0.0" y="532" width="600" height="68"/>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Focus on (name)">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="contactImage" destination="hr4-Xq-aFH" id="Nv8-yb-rt5"/>
+                        <outlet property="contactName" destination="RnX-p5-rdm" id="yJq-ZW-bJY"/>
+                        <outlet property="receiveFocusButton" destination="pTv-2U-g2X" id="pr3-wQ-tRt"/>
+                        <outlet property="receiveSuggestPenaltyBox" destination="H55-1H-jzV" id="udX-2R-AUT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxT-YM-NhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -867,21 +913,20 @@
             <point key="canvasLocation" x="-1451" y="-524"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="IdR-2j-Wgr">
+        <scene sceneID="8yn-NU-qVn">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ysp-qm-zta" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zZh-aG-eZv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S9L-jF-Ziq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JXE-4O-nXj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="p8i-uX-JK8" kind="relationship" relationship="rootViewController" id="5dx-rW-0y8"/>
+                        <segue destination="p8i-uX-JK8" kind="relationship" relationship="rootViewController" id="ZYq-FB-kOi"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QXz-ml-cIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQ6-xG-NYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1451" y="225"/>
         </scene>
