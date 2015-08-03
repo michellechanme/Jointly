@@ -11,6 +11,7 @@
 		56369B541B67F4020013DEDE /* MaybeFocusingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */; };
 		5637B5FD1B6A800200A3DDA8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */; };
 		564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */; };
+		5654A07E1B7021A80053B53C /* PunishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5654A07D1B7021A80053B53C /* PunishmentViewController.swift */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
 		56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A151B4EE2860061BF26 /* AppDelegate.swift */; };
 		56A22A1B1B4EE2860061BF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A191B4EE2860061BF26 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaybeFocusingViewController.swift; sourceTree = "<group>"; };
 		5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		5654A07D1B7021A80053B53C /* PunishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentViewController.swift; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
 		56647E381B616ED500DE40D7 /* PFUser+Digits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Digits.m"; sourceTree = "<group>"; };
 		56A22A101B4EE2860061BF26 /* Jointly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jointly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +182,9 @@
 			children = (
 				56A22A141B4EE2860061BF26 /* Info.plist */,
 				56B273AC1B5977EE00B7070E /* Jointly-Bridging-Header.h */,
+				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
+				56647E381B616ED500DE40D7 /* PFUser+Digits.m */,
+				564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -209,14 +214,12 @@
 				56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */,
 				5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */,
 				56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */,
-				564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */,
 				56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */,
 				56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */,
-				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
-				56647E381B616ED500DE40D7 /* PFUser+Digits.m */,
 				56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */,
 				56FE6DB51B6BF09000822C94 /* ReceiveSuggestPenaltyViewController.swift */,
 				56CE42241B66F71D0040DEE8 /* TimerViewController.swift */,
+				5654A07D1B7021A80053B53C /* PunishmentViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */,
 				56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */,
 				56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */,
+				5654A07E1B7021A80053B53C /* PunishmentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

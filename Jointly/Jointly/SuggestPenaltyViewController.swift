@@ -138,6 +138,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         if (segue.identifier == "focusing") {
             var destinationViewController = segue.destinationViewController as! TimerViewController
             destinationViewController.timerDuration = timerDuration
+            destinationViewController.person = person
             destinationViewController.name = name
         }
     }

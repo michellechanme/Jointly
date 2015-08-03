@@ -7,14 +7,17 @@
 
 import Foundation
 import UIKit
+import AddressBook
 
 class TimerViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel! = nil
     @IBOutlet weak var giveUpButton: UIButton!
     @IBOutlet weak var focusingLabel: UILabel!
+    @IBOutlet weak var contactImage: UIImageView!
     
-    var name : String?
+    var name: String!
+    var person : ABRecord?
     var timerDuration: Double = 0.0 {
         // enabling updating of timer
         didSet {
@@ -24,12 +27,14 @@ class TimerViewController: UIViewController {
     }
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
-            "Are you sure you want to give up?", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default,handler: nil))
+            "Are you sure you want to give up? :(", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default,handler: {
+            action in
+            self.performSegueWithIdentifier("toPunish", sender: self)
+            }))
+        
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
-        
-        
     }
     var counter = 100.0
     
@@ -43,8 +48,20 @@ class TimerViewController: UIViewController {
         
         focusingLabel.text = "Focusing on " + name!
         
-//        let myTimer = NSTimer(timeInterval: 0.5, target: self, selector: "timerDidFire:", userInfo: nil, repeats: true)
-//        NSRunLoop.currentRunLoop().addTimer(myTimer, forMode: NSRunLoopCommonModes)
+        if (ABPersonHasImageData(person)) {
+            let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
+            let image = UIImage(data: imgData)
+            contactImage.image = image
+            setPictureDesign(contactImage)
+        }
+    }
+    
+    // Create circular image
+    
+    func setPictureDesign(image: UIImageView){
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.layer.masksToBounds = true
+        image.layer.borderWidth = 0;
     }
     
     func update() {

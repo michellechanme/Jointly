@@ -195,8 +195,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
             destinationViewController.timerDuration = countdownTimer.countDownDuration
-
-            
         }
         
         if (segue.identifier == "MaybeFocusViewController") {
@@ -204,9 +202,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
         }
-        
     }
-    
 }
 
 func sanitizePhoneNumber(unfilteredNum: String) -> String {
