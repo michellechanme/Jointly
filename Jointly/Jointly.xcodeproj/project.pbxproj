@@ -10,6 +10,7 @@
 		228CCF898398535C2CDEF68F /* libPods-Jointly.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51187552BC8A047CB8F5F748 /* libPods-Jointly.a */; };
 		56369B541B67F4020013DEDE /* MaybeFocusingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */; };
 		5637B5FD1B6A800200A3DDA8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */; };
+		564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
 		56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A151B4EE2860061BF26 /* AppDelegate.swift */; };
 		56A22A1B1B4EE2860061BF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A191B4EE2860061BF26 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		51187552BC8A047CB8F5F748 /* libPods-Jointly.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Jointly.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		56369B531B67F4020013DEDE /* MaybeFocusingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaybeFocusingViewController.swift; sourceTree = "<group>"; };
 		5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
 		56647E381B616ED500DE40D7 /* PFUser+Digits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Digits.m"; sourceTree = "<group>"; };
 		56A22A101B4EE2860061BF26 /* Jointly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jointly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				56A22A3E1B4EE3010061BF26 /* LoginViewController.swift */,
 				5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */,
 				56FFD43E1B55A0C9002AC02E /* HomeViewController.swift */,
+				564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */,
 				56FFD4411B55C570002AC02E /* CreateMomentViewController.swift */,
 				56CC78121B5866DA001CD4BC /* SuggestPenaltyViewController.swift */,
 				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
@@ -421,6 +424,7 @@
 				5637B5FD1B6A800200A3DDA8 /* UserInfoViewController.swift in Sources */,
 				56A22A3F1B4EE3010061BF26 /* LoginViewController.swift in Sources */,
 				56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */,
+				564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */,
 				56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */,
 				56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */,
 				56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */,

@@ -28,7 +28,7 @@ class MaybeFocusViewController: UIViewController {
     
     override func viewDidLoad() {
         let name = self.name ?? "a friend"
-        focusLabel.text = "Would like to focus on " + currentUserName + "?"
+        focusLabel.text = "Would like to focus on " + currentUserName + "?" ?? "Someone"
         
         if (ABPersonHasImageData(person)) {
             let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()

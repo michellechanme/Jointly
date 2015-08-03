@@ -14,6 +14,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
 
     var name : String?
     var person : ABRecord?
+//    var image: UIImageView!
     
     @IBOutlet weak var chosenContact: UILabel!
     @IBOutlet weak var contactImage: UIImageView!
@@ -137,6 +138,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         if (segue.identifier == "focusing") {
             var destinationViewController = segue.destinationViewController as! TimerViewController
             destinationViewController.timerDuration = timerDuration
+            destinationViewController.name = name
         }
     }
 }

@@ -15,6 +15,7 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var goButton: UIButton!
     
+//    let realm = Realm()
     
     @IBAction func goPressed(sender: AnyObject) {
         
@@ -22,6 +23,11 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
         if let user = PFUser.currentUser() {
             user.setValue(nameTextField.text, forKey: "name")
             user.saveInBackground()
+            
+            //TODO: Save data locally (cache, using realm)
+//            realm.write() {
+//                realm.add(UserInfoModel.sharedInstance.name = nameTextField.text)
+//            }
         }
     }
     
