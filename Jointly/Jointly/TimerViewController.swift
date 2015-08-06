@@ -18,7 +18,7 @@ class TimerViewController: UIViewController {
     
     var name: String!
     var person : ABRecord?
-    
+    var punishment : String?
     var timerDuration: Double = 0.0 {
         // enabling updating of timer
         didSet {
@@ -26,6 +26,8 @@ class TimerViewController: UIViewController {
             counter = timerDuration
         }
     }
+    
+//    var doubleToString:String = String(format:"%.1f", timerDuration)
     
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
@@ -55,11 +57,19 @@ class TimerViewController: UIViewController {
             let image = UIImage(data: imgData)
             contactImage.image = image
             setPictureDesign(contactImage)
+        } else {
+            let defaultImage = UIImage(named: "default")
+            contactImage.image = defaultImage
         }
     }
     
     // Create circular image
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toPunish") {
+            let destination = segue.destinationViewController as! PunishmentViewController
+            destination.punishment = punishment
+        }
+    }
     func setPictureDesign(image: UIImageView){
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true

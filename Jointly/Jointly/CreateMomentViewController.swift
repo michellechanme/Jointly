@@ -25,7 +25,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var countdownTimer: UIDatePicker!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var timePicker: UIDatePicker!
-
+    var primaryPhoneNumber : String?
     var firstNameContact: String?
     var selectedPerson : String?
     var navBar:UINavigationBar = UINavigationBar()
@@ -35,14 +35,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         didSet {
             nextButton.enabled = (person != nil)
         }
-    }
-    
-    @IBAction func toSuggestPenalty(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Start Together", message:
-            "Make sure your partner hits the 'focus' button at the same time as you do.", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
-        
-        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -138,36 +130,10 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             if ABMultiValueGetCount(phoneNumbers) > 0 {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
-                    let userQuery = PFUser.query()!
-                    
-                    userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone as! String)) // primaryPhone
-                    
                     println("Local contact has phone number \(primaryPhone)")
-                    
-                    let installationQuery = PFInstallation.query()
-                    installationQuery?.whereKey("user", matchesQuery: userQuery)
-                    let push = PFPush()
-                    
-//                    let kABPersonFirstNameProperty: ABPropertyID = kABPersonFirstNameProperty()
-                    
+                    primaryPhoneNumber = primaryPhone as? String
                     if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
-                        let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
-                        let data = [
-//                        if UserInfoModel.sharedInstance.name == nil {
-//                            UserInfoModel.sharedInstance.name = realm.query("UserInfoModel").name
-//                        }
-                                "alert" : currentUserName + " would like to focus on you",
-                                "userid" : PFUser.currentUser()?.objectId ?? ""
-                            
-                        ]
-                        push.setQuery(installationQuery);
-                        push.setData(data)
-                        push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
-                            
-                            println("Well, at least the push completed. Success? \(success)")
-                            println(error)
-                        })
-                    }
+                     }
                 } else {
                     println("Could not retrieve user's primary phone number")
                 }
@@ -180,7 +146,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: get timer value
-    
     
     var timer: NSTimer?
     var timerStart: NSDate?
@@ -203,6 +168,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
             destinationViewController.timerDuration = countdownTimer.countDownDuration
+            destinationViewController.primaryPhone = primaryPhoneNumber
         }
         
         if (segue.identifier == "MaybeFocusViewController") {

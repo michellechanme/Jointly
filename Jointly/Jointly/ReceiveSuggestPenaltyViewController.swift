@@ -52,7 +52,8 @@ class ReceiveSuggestPenaltyViewController: UIViewController {
             contactImage.image = image
             setPictureDesign(contactImage)
         } else {
-            
+            let defaultImage = UIImage(named: "default")
+            contactImage.image = defaultImage
         }
         
         receiveFocusButton.setTitle("Focus on \(name as String!)", forState: .Normal)

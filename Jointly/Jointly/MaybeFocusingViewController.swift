@@ -18,6 +18,7 @@ class MaybeFocusViewController: UIViewController {
     @IBOutlet weak var focusImage: UIImageView!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var contactImage: UIImageView!
     
     var name: String?
     var person: ABRecord?
@@ -29,6 +30,7 @@ class MaybeFocusViewController: UIViewController {
     override func viewDidLoad() {
         let name = self.name ?? "a friend"
         focusLabel.text = "Would you like to focus on " + name + "?"
+        println("hey, am I being ran?")
         
         
         if (ABPersonHasImageData(person)) {
@@ -37,7 +39,9 @@ class MaybeFocusViewController: UIViewController {
             focusImage.image = image
             setPictureDesign(focusImage)
         } else {
-            
+            println("image?")
+            let defaultImage = UIImage(named: "default")
+            contactImage.image = defaultImage
         }
         
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -55,6 +59,12 @@ class MaybeFocusViewController: UIViewController {
         
         if (segue.identifier == "toReceiveSuggestPenalty") {
             var destinationViewController = segue.destinationViewController as! ReceiveSuggestPenaltyViewController
+            destinationViewController.person = person
+            destinationViewController.name = name
+        }
+        if (segue.identifier == "toTimer") {
+            var destinationViewController = segue.destinationViewController as! TimerViewController
+//            destinationViewController.timerDuration = timerDuration
             destinationViewController.person = person
             destinationViewController.name = name
         }

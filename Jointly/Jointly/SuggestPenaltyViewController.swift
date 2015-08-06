@@ -22,7 +22,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var suggestPenaltyBox: UITextView!
     @IBOutlet weak var backButton: UIBarButtonItem!
-    
+    var primaryPhone : String?
     @IBAction func unwindToCreateMoment(sender: AnyObject) {
     }
     
@@ -55,7 +55,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         super.viewDidLoad()
         chosenContact.text = name
         
-        suggestPenaltyBox.text = "Suggest potential penalty for your partner.."
+        suggestPenaltyBox.text = "i.e. Pay the next food bill"
         
         // Do any additional setup after loading the view.
         
@@ -67,7 +67,8 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
             contactImage.image = image
             setPictureDesign(contactImage)
         } else {
-            
+            let defaultImage = UIImage(named: "default")
+            contactImage.image = defaultImage
         }
         
         // corner radius of SuggestPenaltyBox
@@ -115,7 +116,6 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
 
     // swipe to dismiss keyboard
-   
     func dismissKeyboard() {
         self.suggestPenaltyBox.resignFirstResponder()
     }
@@ -126,7 +126,6 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     // Create circular image
-    
     func setPictureDesign(image: UIImageView){
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
@@ -140,6 +139,30 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
             destinationViewController.timerDuration = timerDuration
             destinationViewController.person = person
             destinationViewController.name = name
+            destinationViewController.punishment = suggestPenaltyBox.text
+            
+            let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
+            let data = [
+                "alert" : currentUserName + " would like to focus on you",
+                "userid" : PFUser.currentUser()?.objectId ?? "",
+                "punishment" : suggestPenaltyBox.text,
+                "timer" : timerDuration.description
+            ]
+            let installationQuery = PFInstallation.query()
+            let userQuery = PFUser.query()!
+
+            userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone ?? "")) // primaryPhone
+            
+            installationQuery?.whereKey("user", matchesQuery: userQuery)
+            let push = PFPush()
+            push.setQuery(installationQuery);
+            push.setData(data)
+            push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
+                
+                println("Well, at least the push completed. Success? \(success)")
+                println(error)
+            })
+
         }
     }
 }
