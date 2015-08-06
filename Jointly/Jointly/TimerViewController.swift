@@ -18,6 +18,7 @@ class TimerViewController: UIViewController {
     
     var name: String!
     var person : ABRecord?
+    
     var timerDuration: Double = 0.0 {
         // enabling updating of timer
         didSet {
@@ -25,6 +26,7 @@ class TimerViewController: UIViewController {
             counter = timerDuration
         }
     }
+    
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
             "Are you sure you want to give up? :(", preferredStyle: UIAlertControllerStyle.Alert)
@@ -36,8 +38,8 @@ class TimerViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-    var counter = 100.0
     
+    var counter = 100.0
     var timer: NSTimer!
     
     let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"

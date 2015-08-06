@@ -13,6 +13,10 @@ import AddressBookUI
 import QuartzCore
 
 class ReceiveSuggestPenaltyViewController: UIViewController {
+    
+    var name: String?
+    var person: ABRecord?
+    
     @IBOutlet weak var contactImage: UIImageView!
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var receiveSuggestPenaltyBox: UITextView!
@@ -39,6 +43,20 @@ class ReceiveSuggestPenaltyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        contactName.text = name
+        
+        if (ABPersonHasImageData(person)) {
+            let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
+            let image = UIImage(data: imgData)
+            contactImage.image = image
+            setPictureDesign(contactImage)
+        } else {
+            
+        }
+        
+        receiveFocusButton.setTitle("Focus on \(name as String!)", forState: .Normal)
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navBar.tintColor = UIColor.whiteColor()
         setupBarStyle()
@@ -65,6 +83,14 @@ class ReceiveSuggestPenaltyViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    // Create circular image
+    
+    func setPictureDesign(image: UIImageView){
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.layer.masksToBounds = true
+        image.layer.borderWidth = 0;
     }
     
     // MARK: keyboard

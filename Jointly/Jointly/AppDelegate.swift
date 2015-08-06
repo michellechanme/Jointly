@@ -153,6 +153,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     // setting target user for view controller / converting PFObject -> PFUser
                     vc.targetUser = object as? PFUser
+                    vc.name = targetUser["name"] as? String
                     
                     if let navController = self.window!.rootViewController as? UINavigationController {
                         navController.setViewControllers([vc], animated: true)

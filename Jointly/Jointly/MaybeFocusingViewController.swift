@@ -24,11 +24,12 @@ class MaybeFocusViewController: UIViewController {
     var targetUser: PFUser?
     var toPass: String!
     
-    let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
+    //let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
     
     override func viewDidLoad() {
         let name = self.name ?? "a friend"
-        focusLabel.text = "Would like to focus on " + currentUserName + "?" ?? "Someone"
+        focusLabel.text = "Would you like to focus on " + name + "?"
+        
         
         if (ABPersonHasImageData(person)) {
             let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
@@ -48,5 +49,14 @@ class MaybeFocusViewController: UIViewController {
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
         image.layer.borderWidth = 0;
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "toReceiveSuggestPenalty") {
+            var destinationViewController = segue.destinationViewController as! ReceiveSuggestPenaltyViewController
+            destinationViewController.person = person
+            destinationViewController.name = name
+        }
     }
 }

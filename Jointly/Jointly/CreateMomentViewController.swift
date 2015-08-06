@@ -37,6 +37,14 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func toSuggestPenalty(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Start Together", message:
+            "Make sure your partner hits the 'focus' button at the same time as you do.", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
