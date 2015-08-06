@@ -157,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     vc.name = targetUser["name"] as? String
 //                    vc.person
                     vc.punishment = punishment
-//                    vc.timerDuration = "\(timerDuration)" as? String
+                    vc.strTimer = strTimer
                     
                     if let navController = self.window!.rootViewController as? UINavigationController {
                         navController.setViewControllers([vc], animated: true)

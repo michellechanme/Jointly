@@ -31,7 +31,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     var selectedPerson : String?
     var navBar:UINavigationBar = UINavigationBar()
     
-    // checking if a contact was selected
+    // Checking if a contact was selected
     var person: ABRecord? {
         didSet {
             nextButton.enabled = (person != nil)
@@ -45,15 +45,15 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         shake.repeatCount = 2
         shake.autoreverses = true
         
-        var from_point:CGPoint = CGPointMake(nextButton.center.x - 5, nextButton.center.y)
+        var from_point:CGPoint = CGPointMake(addContact.center.x - 5, addContact.center.y)
         var from_value:NSValue = NSValue(CGPoint: from_point)
         
-        var to_point:CGPoint = CGPointMake(nextButton.center.x + 5, nextButton.center.y)
+        var to_point:CGPoint = CGPointMake(addContact.center.x + 5, addContact.center.y)
         var to_value:NSValue = NSValue(CGPoint: to_point)
         
         shake.fromValue = from_value
         shake.toValue = to_value
-        nextButton.layer.addAnimation(shake, forKey: "position")
+        addContact.layer.addAnimation(shake, forKey: "position")
     }
     
     override func viewDidLoad() {
@@ -148,6 +148,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     @IBAction func nextButtonPressed(sender: AnyObject) {
         if person == nil {
             shakeView()
+            println("shake?")
         }
         
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
@@ -203,7 +204,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
 }
 
 func sanitizePhoneNumber(unfilteredNum: String) -> String {
-    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
+    let acceptedChars = NSCharacterSet(charactersInString: "1234567890")
     var filteredNum = String()
     for char in unfilteredNum.utf16 {
         if acceptedChars.characterIsMember(char) {

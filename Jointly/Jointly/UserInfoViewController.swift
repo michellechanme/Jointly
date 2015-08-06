@@ -20,12 +20,14 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
         if let user = PFUser.currentUser() {
             user.setValue(nameTextField.text, forKey: "name")
             user.saveInBackground()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Onboarded")
+            NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Onboarded")
+
         
         // MARK: User Interface
         

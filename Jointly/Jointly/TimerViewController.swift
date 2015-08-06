@@ -19,16 +19,15 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
-    var timerDuration: Double = 0.0 {
+    var timerDuration: Double? = 0.0 {
         // enabling updating of timer
         didSet {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
-            counter = timerDuration
+            counter = timerDuration!
+            var strTimer: String? = timerDuration!.description
         }
     }
-    
-//    var doubleToString:String = String(format:"%.1f", timerDuration)
-    
+        
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
             "Are you sure you want to give up? :(", preferredStyle: UIAlertControllerStyle.Alert)

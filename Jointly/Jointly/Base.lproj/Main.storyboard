@@ -259,7 +259,7 @@
                                     <constraint firstAttribute="height" constant="36" id="iXX-3U-X2S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="I'm ready!">
+                                <state key="normal" title="Boom">
                                     <color key="titleColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -427,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-vO-AbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="225"/>
+            <point key="canvasLocation" x="819" y="225"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="NUp-nJ-13q">
@@ -1117,7 +1117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CxT-YM-NhA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="269" y="705"/>
+            <point key="canvasLocation" x="-1451" y="973"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="A07-aJ-xcM">
@@ -1188,6 +1188,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i06-3M-1Aw"/>
-        <segue reference="Wub-VU-9gq"/>
+        <segue reference="umK-aC-NdK"/>
     </inferredMetricsTieBreakers>
 </document>
