@@ -75,11 +75,14 @@ class TimerViewController: UIViewController {
         image.layer.masksToBounds = true
         image.layer.borderWidth = 0;
     }
-    
+
     func update() {
         if (counter > 0) {
             counter--
             timerLabel.text = "\(counter)"
+        } else {
+//            self.window!.makeKeyAndVisible()
+//            self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
         }
         
     }

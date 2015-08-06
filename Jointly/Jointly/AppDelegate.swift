@@ -42,10 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // instantiate your desired ViewController
         let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
         let onboardingViewController = storyboard.instantiateViewControllerWithIdentifier("OnboardingVC") as! UIViewController
+        let UserInfoViewController = storyboard.instantiateViewControllerWithIdentifier("namePrompt") as! UIViewController
         
         let window = self.window
         
-        if (isOnboarded) {
+        if (isOnboarded && PFUser.currentUser()?["name"] == nil) {
+            window!.rootViewController = UserInfoViewController
+        } else if (isOnboarded) {
             window!.rootViewController = homeViewController
         } else {
             window!.rootViewController = onboardingViewController
@@ -154,8 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     vc.name = targetUser["name"] as? String
 //                    vc.person
                     vc.punishment = punishment
-//                    vc.timerDuration = timerDuration
-                    
+//                    vc.timerDuration = "\(timerDuration)" as? String
                     
                     if let navController = self.window!.rootViewController as? UINavigationController {
                         navController.setViewControllers([vc], animated: true)

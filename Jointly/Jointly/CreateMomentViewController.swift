@@ -11,6 +11,7 @@ import AddressBookUI
 import AddressBook
 import Parse
 import Foundation
+import QuartzCore
 
 class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
@@ -35,6 +36,24 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         didSet {
             nextButton.enabled = (person != nil)
         }
+    }
+    
+    func shakeView() {
+
+        var shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 2
+        shake.autoreverses = true
+        
+        var from_point:CGPoint = CGPointMake(nextButton.center.x - 5, nextButton.center.y)
+        var from_value:NSValue = NSValue(CGPoint: from_point)
+        
+        var to_point:CGPoint = CGPointMake(nextButton.center.x + 5, nextButton.center.y)
+        var to_value:NSValue = NSValue(CGPoint: to_point)
+        
+        shake.fromValue = from_value
+        shake.toValue = to_value
+        nextButton.layer.addAnimation(shake, forKey: "position")
     }
     
     override func viewDidLoad() {
@@ -127,6 +146,10 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     // MARK: converts Apple's contact to Parse's phone number format :|
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
+        if person == nil {
+            shakeView()
+        }
+        
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             if ABMultiValueGetCount(phoneNumbers) > 0 {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {

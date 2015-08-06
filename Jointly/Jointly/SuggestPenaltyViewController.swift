@@ -14,7 +14,9 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
 
     var name : String?
     var person : ABRecord?
-//    var image: UIImageView!
+    var primaryPhone : String?
+    var animateDistance = CGFloat()
+    var timerDuration: Double = 0.0
     
     @IBOutlet weak var chosenContact: UILabel!
     @IBOutlet weak var contactImage: UIImageView!
@@ -22,14 +24,10 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var suggestPenaltyBox: UITextView!
     @IBOutlet weak var backButton: UIBarButtonItem!
-    var primaryPhone : String?
     @IBAction func unwindToCreateMoment(sender: AnyObject) {
     }
     
-    var animateDistance = CGFloat()
-    var timerDuration: Double = 0.0
-    
-    let PLACEHOLDER_TEXT = "Suggest a penalty for your partner.."
+    let PLACEHOLDER_TEXT = "i.e. Pay the next food bill"
     
     // Details button alert
     
@@ -52,10 +50,11 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     override func viewDidLoad() {
+        
+        applyPlaceholderStyle(suggestPenaltyBox!, placeholderText: PLACEHOLDER_TEXT)
+        
         super.viewDidLoad()
         chosenContact.text = name
-        
-        suggestPenaltyBox.text = "i.e. Pay the next food bill"
         
         // Do any additional setup after loading the view.
         
@@ -93,6 +92,58 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+        
+        suggestPenaltyBox?.delegate = self
+    }
+    
+    func applyPlaceholderStyle(aTextview: UITextView, placeholderText: String) {
+        // make it look (initially) like a placeholder
+        aTextview.text = placeholderText
+    }
+    
+    func applyNonPlaceholderStyle(aTextview: UITextView) {
+//        aTextview.textColor = UIColor.darkTextColor()
+        aTextview.alpha = 1.0
+    }
+    
+    func textViewShouldBeginEditing(aTextView: UITextView) -> Bool {
+        if aTextView == suggestPenaltyBox && aTextView.text == PLACEHOLDER_TEXT
+        {
+            // move cursor to start
+            moveCursorToStart(aTextView)
+        }
+        return true
+    }
+    
+    func moveCursorToStart(aTextView: UITextView) {
+        dispatch_async(dispatch_get_main_queue(), {
+            aTextView.selectedRange = NSMakeRange(0, 0);
+        })
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        // remove the placeholder text when they start typing
+        // first, see if the field is empty
+        // if it's not empty, then the text should be black and not italic
+        // BUT, we also need to remove the placeholder text if that's the only text
+        // if it is empty, then the text should be the placeholder
+        let newLength = count("textView.text".utf16) + count(text.utf16) - range.length
+        if newLength > 0 // have text, so don't show the placeholder
+        {
+            // check if the only text is the placeholder and remove it if needed
+            if textView == suggestPenaltyBox && textView.text == PLACEHOLDER_TEXT
+            {
+                applyNonPlaceholderStyle(textView)
+                textView.text = ""
+            }
+            return true
+        }
+        else  // no text, so show the placeholder
+        {
+            applyPlaceholderStyle(textView, placeholderText: PLACEHOLDER_TEXT)
+            moveCursorToStart(textView)
+            return false
+        }
     }
     
     // MARK: keyboard

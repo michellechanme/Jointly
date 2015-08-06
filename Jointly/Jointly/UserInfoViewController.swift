@@ -14,20 +14,12 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var namePrompt: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var goButton: UIButton!
-    
-//    let realm = Realm()
-    
     @IBAction func goPressed(sender: AnyObject) {
         
         // checking if we have current user. if so, save them!
         if let user = PFUser.currentUser() {
             user.setValue(nameTextField.text, forKey: "name")
             user.saveInBackground()
-            
-            //TODO: Save data locally (cache, using realm)
-//            realm.write() {
-//                realm.add(UserInfoModel.sharedInstance.name = nameTextField.text)
-//            }
         }
     }
     
@@ -38,9 +30,9 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
         // MARK: User Interface
         
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
         // corner radius of goButton
         goButton.layer.cornerRadius = 4
-//        goButton.enabled = (nameTextField != nil)
         
         nameTextField.becomeFirstResponder()
         let border = CALayer()
