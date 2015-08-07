@@ -19,16 +19,13 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
-    private var counter = 100.0
+    private var counter = 100.00
     var timer: NSTimer!
     var timerDuration: Double? = 0.0 {
         // Enabling update of timer
         didSet {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
             counter = timerDuration!
-            // NOT GETTING CALLED
-            var strTimer: String? = timerDuration!.description
-            println("I called \(strTimer)")
         }
     }
     
@@ -77,15 +74,22 @@ class TimerViewController: UIViewController {
         image.layer.masksToBounds = true
         image.layer.borderWidth = 0;
     }
+    
+    // Formats timer into hh:mm:ss
+    func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+        let interval = Int(interval)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        let hours = (interval / 3600)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
 
     func update() {
         if (counter > 0) {
             counter--
-            timerLabel.text = "\(counter)"
-            let timeString = String(format: "The current time is %02d:%02d", 10, 4)
-            //timerDuration = 1.0
+            //timerLabel.text = "\(counter)"
+            timerLabel.text = stringFromTimeInterval(counter)
         } else {
-
         }
         
     }
