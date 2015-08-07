@@ -454,14 +454,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="6gg-fj-LDh">
-                                <rect key="frame" x="190" y="160" width="220" height="220"/>
+                                <rect key="frame" x="190" y="170" width="220" height="220"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="220" id="5QS-4J-5De"/>
                                     <constraint firstAttribute="width" constant="220" id="Jca-fX-H4c"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSc-f9-o3p">
-                                <rect key="frame" x="230" y="479" width="141" height="44"/>
+                                <rect key="frame" x="230" y="500" width="141" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="141" id="1BE-Xl-q47"/>
@@ -476,11 +476,11 @@
                                     <segue destination="M0g-g3-9ZR" kind="show" id="D45-i4-Wzp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Way to be focused, you rock!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXR-pv-yeE">
-                                <rect key="frame" x="131" y="48" width="338" height="74"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Way to be focused, you rock!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXR-pv-yeE">
+                                <rect key="frame" x="36" y="56" width="529" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="74" id="g9C-c4-x0D"/>
-                                    <constraint firstAttribute="width" constant="338" id="nSi-lP-ZAg"/>
+                                    <constraint firstAttribute="width" constant="529" id="nSi-lP-ZAg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -491,12 +491,14 @@
                         <constraints>
                             <constraint firstItem="xqE-3H-v3N" firstAttribute="top" secondItem="qZw-d7-VqY" secondAttribute="top" id="7B5-4W-y0o"/>
                             <constraint firstAttribute="centerX" secondItem="iSc-f9-o3p" secondAttribute="centerX" id="Np3-pY-hcP"/>
+                            <constraint firstItem="YXR-pv-yeE" firstAttribute="leading" secondItem="qZw-d7-VqY" secondAttribute="leadingMargin" constant="20" id="R7L-6X-BH0"/>
                             <constraint firstAttribute="centerX" secondItem="6gg-fj-LDh" secondAttribute="centerX" id="U0j-23-oSF"/>
-                            <constraint firstItem="6gg-fj-LDh" firstAttribute="top" secondItem="YXR-pv-yeE" secondAttribute="bottom" constant="38" id="WAi-jJ-Xqq"/>
+                            <constraint firstItem="6gg-fj-LDh" firstAttribute="top" secondItem="YXR-pv-yeE" secondAttribute="bottom" constant="40" id="WAi-jJ-Xqq"/>
                             <constraint firstItem="xqE-3H-v3N" firstAttribute="leading" secondItem="qZw-d7-VqY" secondAttribute="leading" id="XB6-vt-YYf"/>
-                            <constraint firstItem="jnN-08-TPz" firstAttribute="top" secondItem="iSc-f9-o3p" secondAttribute="bottom" constant="77" id="n8d-PA-CP9"/>
-                            <constraint firstItem="YXR-pv-yeE" firstAttribute="top" secondItem="kuw-br-RNZ" secondAttribute="bottom" constant="28" id="seQ-dC-XOi"/>
-                            <constraint firstAttribute="centerX" secondItem="YXR-pv-yeE" secondAttribute="centerX" id="tJX-AE-1xW"/>
+                            <constraint firstItem="jnN-08-TPz" firstAttribute="top" secondItem="iSc-f9-o3p" secondAttribute="bottom" constant="56" id="n8d-PA-CP9"/>
+                            <constraint firstItem="YXR-pv-yeE" firstAttribute="trailing" secondItem="qZw-d7-VqY" secondAttribute="trailingMargin" constant="-19" id="nkG-44-SoR"/>
+                            <constraint firstItem="YXR-pv-yeE" firstAttribute="top" secondItem="kuw-br-RNZ" secondAttribute="bottom" constant="36" id="seQ-dC-XOi"/>
+                            <constraint firstAttribute="centerX" secondItem="YXR-pv-yeE" secondAttribute="centerX" constant="-0.5" id="tJX-AE-1xW"/>
                             <constraint firstItem="jnN-08-TPz" firstAttribute="top" secondItem="xqE-3H-v3N" secondAttribute="bottom" id="uBY-UR-CYL"/>
                             <constraint firstAttribute="trailing" secondItem="xqE-3H-v3N" secondAttribute="trailing" id="zev-qb-r8V"/>
                         </constraints>
@@ -611,6 +613,7 @@
                         <outlet property="focusingLabel" destination="I5d-h1-EE4" id="3Ae-b6-s4n"/>
                         <outlet property="giveUpButton" destination="BqS-XO-M0X" id="K67-re-Cpk"/>
                         <outlet property="timerLabel" destination="MIi-l4-nOz" id="0qy-gW-Fwi"/>
+                        <segue destination="rUc-42-ytf" kind="show" identifier="toHappy" id="pbh-Sn-Reo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-DP-jIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -799,7 +802,7 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
                                 <rect key="frame" x="0.0" y="153" width="600" height="180"/>
                                 <color key="backgroundColor" red="0.41960784309999999" green="0.58039215690000001" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>

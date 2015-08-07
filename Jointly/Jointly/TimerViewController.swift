@@ -92,7 +92,13 @@ class TimerViewController: UIViewController {
             counter--
             //timerLabel.text = "\(counter)"
             timerLabel.text = stringFromTimeInterval(counter)
+            println(counter)
         } else {
+            self.performSegueWithIdentifier("toHappy", sender: self)
+            timer.invalidate()
+            println("timer is dead")
+
+            
         }
         
     }
