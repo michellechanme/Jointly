@@ -19,15 +19,21 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
+    var counter = 100.0
+    var timer: NSTimer!
     var timerDuration: Double? = 0.0 {
-        // enabling updating of timer
+        // Enabling update of timer
         didSet {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
             counter = timerDuration!
+            // NOT GETTING CALLED
             var strTimer: String? = timerDuration!.description
+            println("I called \(strTimer)")
         }
     }
-        
+    
+    //var strTimer: String? = self.timerDuration!.description
+    
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
             "Are you sure you want to give up? :(", preferredStyle: UIAlertControllerStyle.Alert)
@@ -39,9 +45,7 @@ class TimerViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-    
-    var counter = 100.0
-    var timer: NSTimer!
+
     
     let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
     
@@ -79,6 +83,7 @@ class TimerViewController: UIViewController {
         if (counter > 0) {
             counter--
             timerLabel.text = "\(counter)"
+            //timerDuration = 1.0
         } else {
 //            self.window!.makeKeyAndVisible()
 //            self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)

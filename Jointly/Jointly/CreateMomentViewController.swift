@@ -204,7 +204,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
 }
 
 func sanitizePhoneNumber(unfilteredNum: String) -> String {
-    let acceptedChars = NSCharacterSet(charactersInString: "1234567890")
+    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
     var filteredNum = String()
     for char in unfilteredNum.utf16 {
         if acceptedChars.characterIsMember(char) {

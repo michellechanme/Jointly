@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-         Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
+        Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
         
         //set up push notifications
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
-        
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
@@ -101,11 +101,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                     self.window!.makeKeyAndVisible()
                     self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
-                    
                 }
             }
         }
-        
         return true
     }
     
@@ -140,16 +138,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let userid: String = userInfo["userid"] as? String, let punishment = userInfo["punishment"] as? String {
             let targetUser = PFUser(withoutDataWithObjectId: userid)
             targetUser.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-                // Show photo view controller
+
                 if error != nil {
                     println(error)
                     println(object?.objectForKey("username") as? String)
-                    
                     completionHandler(UIBackgroundFetchResult.Failed)
                 } else if PFUser.currentUser() != nil {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
-                    
                     let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
@@ -157,15 +152,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     vc.name = targetUser["name"] as? String
 //                    vc.person
                     vc.punishment = punishment
-                    vc.strTimer = strTimer
+                    //vc.strTimer = self.strTimer
                     
                     if let navController = self.window!.rootViewController as? UINavigationController {
                         navController.setViewControllers([vc], animated: true)
                     } else {
                         self.window!.rootViewController = vc
                     }
-                    
-//                    self.window!.rootViewController?.presentViewController(vc, animated: true, completion: nil)
                     completionHandler(UIBackgroundFetchResult.NewData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)

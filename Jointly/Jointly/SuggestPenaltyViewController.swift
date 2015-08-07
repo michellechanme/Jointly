@@ -96,13 +96,19 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         suggestPenaltyBox?.delegate = self
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setPictureDesign(contactImage)
+    }
+    
     func applyPlaceholderStyle(aTextview: UITextView, placeholderText: String) {
         // make it look (initially) like a placeholder
+        aTextview.textColor = UIColor.lightTextColor()
         aTextview.text = placeholderText
     }
     
     func applyNonPlaceholderStyle(aTextview: UITextView) {
-//        aTextview.textColor = UIColor.darkTextColor()
+        aTextview.textColor = UIColor.whiteColor()
         aTextview.alpha = 1.0
     }
     
