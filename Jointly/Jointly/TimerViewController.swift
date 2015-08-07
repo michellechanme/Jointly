@@ -19,7 +19,7 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
-    var counter = 100.0
+    private var counter = 100.0
     var timer: NSTimer!
     var timerDuration: Double? = 0.0 {
         // Enabling update of timer
@@ -45,7 +45,6 @@ class TimerViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
     }
-
     
     let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
     
@@ -83,10 +82,10 @@ class TimerViewController: UIViewController {
         if (counter > 0) {
             counter--
             timerLabel.text = "\(counter)"
+            let timeString = String(format: "The current time is %02d:%02d", 10, 4)
             //timerDuration = 1.0
         } else {
-//            self.window!.makeKeyAndVisible()
-//            self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
+
         }
         
     }

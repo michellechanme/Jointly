@@ -203,8 +203,8 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
                 "alert" : currentUserName + " would like to focus on you",
                 "userid" : PFUser.currentUser()?.objectId ?? "",
                 "punishment" : suggestPenaltyBox.text,
-                "timer" : timerDuration.description
-            ]
+                "counter" : timerDuration
+            ] as [NSObject: AnyObject]
             let installationQuery = PFInstallation.query()
             let userQuery = PFUser.query()!
 

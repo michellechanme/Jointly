@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         println("Current user is \(PFUser.currentUser()) and the token:\(PFUser.currentUser()?.sessionToken)")
         
-        if let userid: String = userInfo["userid"] as? String, let punishment = userInfo["punishment"] as? String {
+        if let userid: String = userInfo["userid"] as? String, let punishment = userInfo["punishment"] as? String, let counter = userInfo["counter"] as? Double {
             let targetUser = PFUser(withoutDataWithObjectId: userid)
             targetUser.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
 
@@ -152,7 +152,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     vc.name = targetUser["name"] as? String
 //                    vc.person
                     vc.punishment = punishment
-                    //vc.strTimer = self.strTimer
+                    vc.timerDuration = counter
                     
                     if let navController = self.window!.rootViewController as? UINavigationController {
                         navController.setViewControllers([vc], animated: true)
@@ -192,6 +192,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
