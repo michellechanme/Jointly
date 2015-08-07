@@ -186,6 +186,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var timerDuration = countdownTimer.countDownDuration
+        println(timerDuration)
         
         if (segue.identifier == "toSuggestPenality") {
             var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController

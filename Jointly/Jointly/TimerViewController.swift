@@ -29,8 +29,7 @@ class TimerViewController: UIViewController {
         }
     }
     
-    //var strTimer: String? = self.timerDuration!.description
-    
+    // Give up button alert
     @IBAction func giveUpButtonPressed(sender: AnyObject) {
         let alertController = UIAlertController(title: "Giving up?", message:
             "Are you sure you want to give up? :(", preferredStyle: UIAlertControllerStyle.Alert)
@@ -51,6 +50,7 @@ class TimerViewController: UIViewController {
         
         focusingLabel.text = "Focusing on " + name!
         
+        // Creates contact image, heart default
         if (ABPersonHasImageData(person)) {
             let imgData = ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatOriginalSize).takeRetainedValue()
             let image = UIImage(data: imgData)
@@ -62,13 +62,15 @@ class TimerViewController: UIViewController {
         }
     }
     
-    // Create circular image
+    // Moves punishment from TimerVC to PunishmentVC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toPunish") {
             let destination = segue.destinationViewController as! PunishmentViewController
             destination.punishment = punishment
         }
     }
+    
+    // Create circular image
     func setPictureDesign(image: UIImageView){
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
@@ -84,6 +86,7 @@ class TimerViewController: UIViewController {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
+    // Updates timer
     func update() {
         if (counter > 0) {
             counter--

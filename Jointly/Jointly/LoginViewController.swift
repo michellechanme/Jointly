@@ -30,7 +30,6 @@ class LoginViewController: UIViewController {
                     if let error = error {
                         print(error)
                     }
-                    
                     print("Installation Success: \(success)")
                 })
                 

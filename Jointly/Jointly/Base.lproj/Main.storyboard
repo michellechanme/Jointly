@@ -430,6 +430,87 @@
             </objects>
             <point key="canvasLocation" x="819" y="225"/>
         </scene>
+        <!--Happy View Controller-->
+        <scene sceneID="Me3-4Q-Th1">
+            <objects>
+                <viewController id="rUc-42-ytf" customClass="HappyViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kuw-br-RNZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="jnN-08-TPz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qZw-d7-VqY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqE-3H-v3N">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="600" id="bY2-ay-aLz"/>
+                                    <constraint firstAttribute="width" constant="600" id="vEz-FA-VmD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="6gg-fj-LDh">
+                                <rect key="frame" x="190" y="160" width="220" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="5QS-4J-5De"/>
+                                    <constraint firstAttribute="width" constant="220" id="Jca-fX-H4c"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSc-f9-o3p">
+                                <rect key="frame" x="230" y="479" width="141" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="141" id="1BE-Xl-q47"/>
+                                    <constraint firstAttribute="height" constant="44" id="OuY-dM-exg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                <state key="normal" title="Home">
+                                    <color key="titleColor" red="0.42745098040000001" green="0.59215686270000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="M0g-g3-9ZR" kind="show" id="D45-i4-Wzp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Way to be focused, you rock!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXR-pv-yeE">
+                                <rect key="frame" x="131" y="48" width="338" height="74"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="74" id="g9C-c4-x0D"/>
+                                    <constraint firstAttribute="width" constant="338" id="nSi-lP-ZAg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xqE-3H-v3N" firstAttribute="top" secondItem="qZw-d7-VqY" secondAttribute="top" id="7B5-4W-y0o"/>
+                            <constraint firstAttribute="centerX" secondItem="iSc-f9-o3p" secondAttribute="centerX" id="Np3-pY-hcP"/>
+                            <constraint firstAttribute="centerX" secondItem="6gg-fj-LDh" secondAttribute="centerX" id="U0j-23-oSF"/>
+                            <constraint firstItem="6gg-fj-LDh" firstAttribute="top" secondItem="YXR-pv-yeE" secondAttribute="bottom" constant="38" id="WAi-jJ-Xqq"/>
+                            <constraint firstItem="xqE-3H-v3N" firstAttribute="leading" secondItem="qZw-d7-VqY" secondAttribute="leading" id="XB6-vt-YYf"/>
+                            <constraint firstItem="jnN-08-TPz" firstAttribute="top" secondItem="iSc-f9-o3p" secondAttribute="bottom" constant="77" id="n8d-PA-CP9"/>
+                            <constraint firstItem="YXR-pv-yeE" firstAttribute="top" secondItem="kuw-br-RNZ" secondAttribute="bottom" constant="28" id="seQ-dC-XOi"/>
+                            <constraint firstAttribute="centerX" secondItem="YXR-pv-yeE" secondAttribute="centerX" id="tJX-AE-1xW"/>
+                            <constraint firstItem="jnN-08-TPz" firstAttribute="top" secondItem="xqE-3H-v3N" secondAttribute="bottom" id="uBY-UR-CYL"/>
+                            <constraint firstAttribute="trailing" secondItem="xqE-3H-v3N" secondAttribute="trailing" id="zev-qb-r8V"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="happyImage" destination="6gg-fj-LDh" id="mIR-7b-rdw"/>
+                        <outlet property="happyLabel" destination="YXR-pv-yeE" id="UfA-ci-9cf"/>
+                        <outlet property="toHomeButton" destination="iSc-f9-o3p" id="3aG-FA-geG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoO-yB-0mX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="964"/>
+        </scene>
         <!--Timer View Controller-->
         <scene sceneID="NUp-nJ-13q">
             <objects>
@@ -1197,13 +1278,14 @@
         <image name="Home" width="1314" height="1886"/>
         <image name="arrow" width="170" height="341"/>
         <image name="button" width="64" height="64"/>
+        <image name="happy" width="189" height="189"/>
         <image name="logo" width="531" height="360"/>
         <image name="plus" width="27" height="27"/>
         <image name="sadFace" width="95" height="95"/>
         <image name="x" width="21" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i06-3M-1Aw"/>
+        <segue reference="D45-i4-Wzp"/>
         <segue reference="Wub-VU-9gq"/>
     </inferredMetricsTieBreakers>
 </document>

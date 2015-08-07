@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set up push notifications
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
-        
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
@@ -33,6 +32,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Digits()])
         
         let digitsAppearance = DGTAppearance()
+        
+        func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+            return UIColor(
+                red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+                green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+                blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+                alpha: CGFloat(1.0)
+            )
+        }
+        
+        UINavigationBar.appearance().barTintColor = UIColorFromRGB(0x6B94C8)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        var navigationBarAppearace = UINavigationBar.appearance()
+        navigationBarAppearace.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18)!]
+        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         // MARK: checking if user onboarded
         
@@ -178,6 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
