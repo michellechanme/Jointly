@@ -16,6 +16,11 @@ class LoginViewController: UIViewController {
 
         let digits = Digits.sharedInstance()
         digits.logOut()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         
         PFUser.loginWithDigitsInBackground {(user: PFUser!, error: NSError!) -> () in
             if (error == nil) {
@@ -38,11 +43,6 @@ class LoginViewController: UIViewController {
                 print(error)
             }
         }
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
 
     override func didReceiveMemoryWarning() {

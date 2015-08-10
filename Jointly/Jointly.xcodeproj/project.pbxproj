@@ -13,6 +13,7 @@
 		564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */; };
 		5654A07E1B7021A80053B53C /* PunishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5654A07D1B7021A80053B53C /* PunishmentViewController.swift */; };
 		5663FBBA1B7546080039109D /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5663FBB91B7546080039109D /* HappyViewController.swift */; };
+		5663FBBC1B7568AA0039109D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5663FBBB1B7568AA0039109D /* Crashlytics.framework */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
 		56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A151B4EE2860061BF26 /* AppDelegate.swift */; };
 		56A22A1B1B4EE2860061BF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A191B4EE2860061BF26 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		5654A07D1B7021A80053B53C /* PunishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentViewController.swift; sourceTree = "<group>"; };
 		5663FBB91B7546080039109D /* HappyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HappyViewController.swift; sourceTree = "<group>"; };
+		5663FBBB1B7568AA0039109D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
 		56647E381B616ED500DE40D7 /* PFUser+Digits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Digits.m"; sourceTree = "<group>"; };
 		56A22A101B4EE2860061BF26 /* Jointly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jointly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,7 @@
 				56BB81051B600B3400BA53EE /* libz.dylib in Frameworks */,
 				56BB81031B600B2400BA53EE /* SystemConfiguration.framework in Frameworks */,
 				56BB81011B600B1C00BA53EE /* StoreKit.framework in Frameworks */,
+				5663FBBC1B7568AA0039109D /* Crashlytics.framework in Frameworks */,
 				56BB80FF1B600B1600BA53EE /* Security.framework in Frameworks */,
 				56BB80FD1B600B0F00BA53EE /* QuartzCore.framework in Frameworks */,
 				56BB80FB1B600B0600BA53EE /* CoreLocation.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		56A22A071B4EE2860061BF26 = {
 			isa = PBXGroup;
 			children = (
+				5663FBBB1B7568AA0039109D /* Crashlytics.framework */,
 				56BB80EF1B600A7400BA53EE /* Parse */,
 				56CC755C1B571CAF001CD4BC /* Frameworks */,
 				56A22A121B4EE2860061BF26 /* Jointly */,
@@ -584,8 +588,8 @@
 			baseConfigurationReference = 897E20E017482D8EA450412A /* Pods-Jointly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

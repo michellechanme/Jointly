@@ -25,7 +25,8 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addContact: UIButton!
     @IBOutlet weak var countdownTimer: UIDatePicker!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var timePicker: UIDatePicker!
+//    @IBOutlet weak var timePicker: UIDatePicker!
+    
     var primaryPhoneNumber : String?
     var firstNameContact: String?
     var selectedPerson : String?
@@ -34,28 +35,10 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     // Checking if a contact was selected
     var person: ABRecord? {
         didSet {
-            nextButton.enabled = (person != nil)
+//            nextButton.userInteractionEnabled = (person != nil)
         }
     }
-    
-    func shakeView() {
 
-        var shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
-        
-        var from_point:CGPoint = CGPointMake(addContact.center.x - 5, addContact.center.y)
-        var from_value:NSValue = NSValue(CGPoint: from_point)
-        
-        var to_point:CGPoint = CGPointMake(addContact.center.x + 5, addContact.center.y)
-        var to_value:NSValue = NSValue(CGPoint: to_point)
-        
-        shake.fromValue = from_value
-        shake.toValue = to_value
-        addContact.layer.addAnimation(shake, forKey: "position")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,6 +61,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     // MARK: nav bar style
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
          var nav = self.navigationController?.navigationBar
          nav?.tintColor = UIColor.whiteColor()
         
@@ -121,17 +105,11 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: predict contact
-    
     var predicate: NSPredicate = NSPredicate { (AnyObject person, NSDictionary bindings) -> Bool in
         var firstName: String? = ABRecordCopyValue(person as ABRecordRef, kABPersonFirstNameProperty).takeRetainedValue() as? String
         var lastName: String? = ABRecordCopyValue(person as ABRecordRef, kABPersonLastNameProperty).takeRetainedValue() as? String
         
         return firstName != nil || lastName != nil
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
         
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
@@ -146,9 +124,14 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     // MARK: converts Apple's contact to Parse's phone number format :|
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
-        if person == nil {
-            shakeView()
-            println("shake?")
+        if person != nil {
+            performSegueWithIdentifier("toSuggestPenality", sender: nil)
+        } else {
+            let bounds = self.addContact.bounds
+            UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: nil, animations: {
+                self.addContact.bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y - 20, width: bounds.size.width, height: bounds.size.height + 60)
+                //                self.addContact.enabled = false
+                }, completion: nil)
         }
         
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
@@ -183,7 +166,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: carrying contact's name to toSuggestPenlity's VC + other VCs
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var timerDuration = countdownTimer.countDownDuration
         println(timerDuration)

@@ -33,7 +33,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     
     @IBAction func detailsButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: "Penalties", message:
-            "Someone gets “penalized” when they either hit the “give up” button or leave the app for over 5 seconds.", preferredStyle: UIAlertControllerStyle.Alert)
+            "Penalties occur by “giving up” or attempting to leave the app during the 'focusing' time.", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -94,6 +94,10 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         suggestPenaltyBox?.delegate = self
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.detailsButton.rotate360Degrees()
     }
     
     override func viewDidLayoutSubviews() {
@@ -221,5 +225,20 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
             })
 
         }
+    }
+}
+
+// Rotates object
+extension UIView {
+    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+        rotateAnimation.duration = duration
+        
+        if let delegate: AnyObject = completionDelegate {
+            rotateAnimation.delegate = delegate
+        }
+        self.layer.addAnimation(rotateAnimation, forKey: nil)
     }
 }

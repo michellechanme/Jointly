@@ -90,15 +90,10 @@ class TimerViewController: UIViewController {
     func update() {
         if (counter > 0) {
             counter--
-            //timerLabel.text = "\(counter)"
             timerLabel.text = stringFromTimeInterval(counter)
-            println(counter)
         } else {
             self.performSegueWithIdentifier("toHappy", sender: self)
             timer.invalidate()
-            println("timer is dead")
-
-            
         }
         
     }
