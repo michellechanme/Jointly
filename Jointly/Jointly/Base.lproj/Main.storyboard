@@ -878,7 +878,6 @@
                         <outlet property="contactTextField" destination="DIB-eK-bvE" id="L3E-Ql-fZn"/>
                         <outlet property="countdownTimer" destination="MJk-e3-tQS" id="IBS-TX-6Y6"/>
                         <outlet property="nextButton" destination="Qle-ro-MoE" id="hfD-qG-dty"/>
-                        <outlet property="timePicker" destination="MJk-e3-tQS" id="jYj-XI-YBP"/>
                         <segue destination="Ums-iU-c50" kind="show" identifier="toSuggestPenality" id="zrK-Am-dV2"/>
                     </connections>
                 </viewController>

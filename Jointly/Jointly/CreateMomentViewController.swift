@@ -25,7 +25,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addContact: UIButton!
     @IBOutlet weak var countdownTimer: UIDatePicker!
     @IBOutlet weak var nextButton: UIButton!
-//    @IBOutlet weak var timePicker: UIDatePicker!
     
     var primaryPhoneNumber : String?
     var firstNameContact: String?
@@ -124,23 +123,15 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     // MARK: converts Apple's contact to Parse's phone number format :|
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
-        if person != nil {
-            performSegueWithIdentifier("toSuggestPenality", sender: nil)
-        } else {
-            let bounds = self.addContact.bounds
-            UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: nil, animations: {
-                self.addContact.bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y - 20, width: bounds.size.width, height: bounds.size.height + 60)
-                //                self.addContact.enabled = false
-                }, completion: nil)
-        }
         
         if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
             if ABMultiValueGetCount(phoneNumbers) > 0 {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
                     println("Local contact has phone number \(primaryPhone)")
                     primaryPhoneNumber = primaryPhone as? String
+                    
                     if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
-                     }
+                    }
                 } else {
                     println("Could not retrieve user's primary phone number")
                 }
@@ -149,6 +140,16 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             }
         } else {
             println("Contact has no phone property")
+        }
+        
+        if person != nil {
+            performSegueWithIdentifier("toSuggestPenality", sender: nil)
+        } else {
+            let bounds = self.addContact.bounds
+            UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: nil, animations: {
+                self.addContact.bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y - 20, width: bounds.size.width, height: bounds.size.height + 60)
+                //                self.addContact.enabled = false
+                }, completion: nil)
         }
     }
     

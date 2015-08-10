@@ -211,6 +211,8 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
             ] as [NSObject: AnyObject]
             let installationQuery = PFInstallation.query()
             let userQuery = PFUser.query()!
+            
+            println(primaryPhone)
 
             userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone ?? "")) // primaryPhone
             
