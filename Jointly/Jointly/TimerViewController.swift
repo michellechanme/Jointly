@@ -62,6 +62,12 @@ class TimerViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(false)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateText:", name: "update", object: nil)
+    }
+    
     // Moves punishment from TimerVC to PunishmentVC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toPunish") {
@@ -90,11 +96,16 @@ class TimerViewController: UIViewController {
     func update() {
         if (counter > 0) {
             counter--
-            timerLabel.text = stringFromTimeInterval(counter)
+//            timerLabel.text = stringFromTimeInterval(counter)
+            NSNotificationCenter.defaultCenter().postNotificationName("update", object: nil)
         } else {
             self.performSegueWithIdentifier("toHappy", sender: self)
             timer.invalidate()
         }
-        
+    }
+    
+    // Displays timer
+    func updateText(notification: NSNotification) {
+        timerLabel.text = stringFromTimeInterval(counter)
     }
 }

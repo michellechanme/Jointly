@@ -23,7 +23,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var addContact: UIButton!
-    @IBOutlet weak var countdownTimer: UIDatePicker!
+    @IBOutlet weak var countdownTimer: UIDatePicker!    
     @IBOutlet weak var nextButton: UIButton!
     
     var primaryPhoneNumber : String?
@@ -168,7 +168,8 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: carrying contact's name to toSuggestPenlity's VC + other VCs
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var timerDuration = countdownTimer.countDownDuration
+        let countdownDurationMinutes = Int64(countdownTimer.countDownDuration) / 60
+        var timerDuration = Double(countdownDurationMinutes) * 60
         println(timerDuration)
         
         if (segue.identifier == "toSuggestPenality") {

@@ -121,6 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        let notificationTypes: UIUserNotificationType = UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound
+        let notificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
         Fabric.with([Digits(), Crashlytics()])
         return true
     }
@@ -184,6 +189,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }   
         completionHandler(UIBackgroundFetchResult.NoData)
+        
+        if application.applicationState == UIApplicationState.Inactive || application.applicationState == UIApplicationState.Background {
+            //opened from a push notification when the app was on background
+//            self.performSegueWithIdentifier("toPunish", sender: self)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -197,8 +207,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
+        var timeElapsed: Int
+         
+        var date = NSDate()
+        var dateComp = NSDateComponents()
+        dateComp.second = 1
+        var cal = NSCalendar.currentCalendar()
+        var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
         
+        var promptUser: UILocalNotification = UILocalNotification()
+        promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
+        promptUser.fireDate = fireDate
+        UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
     }
+}
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -210,6 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        
     }
 
-}
