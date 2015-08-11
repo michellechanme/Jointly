@@ -176,7 +176,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             var destinationViewController = segue.destinationViewController as! SuggestPenaltyViewController
             destinationViewController.name = selectedPerson
             destinationViewController.person = person
-            destinationViewController.timerDuration = countdownTimer.countDownDuration
+            destinationViewController.timerDuration = timerDuration
             destinationViewController.primaryPhone = primaryPhoneNumber
         }
         

@@ -28,7 +28,6 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         // MARK: User Interface
         
         navigationController?.setNavigationBarHidden(true, animated: false)

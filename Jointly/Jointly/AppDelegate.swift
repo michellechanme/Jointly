@@ -206,14 +206,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        var timeElapsed: Int
-         
+
         var date = NSDate()
         var dateComp = NSDateComponents()
         dateComp.second = 1
         var cal = NSCalendar.currentCalendar()
         var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
+        
+        let startGracePeriod: NSDate
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
         
         var promptUser: UILocalNotification = UILocalNotification()
         promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
@@ -228,6 +229,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
+            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
+            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
+                // Penalize!
+                
+//                let window = self.window
+//                window!.rootViewController = TimerViewController
+            }
+        }
+        
+        
     }
 
     func applicationWillTerminate(application: UIApplication) {
