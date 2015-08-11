@@ -1,4 +1,3 @@
-
 //
 //  AppDelegate.swift
 //  Jointly
@@ -204,29 +203,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
+        NSNotificationCenter.defaultCenter().postNotificationName("didEnterBackground", object: nil)
+
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
-        
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
-        
-        if inTimer {
-            var date = NSDate()
-            var dateComp = NSDateComponents()
-            dateComp.second = 1
-            var cal = NSCalendar.currentCalendar()
-            var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
-            
-            let startGracePeriod: NSDate
-            
-            var promptUser: UILocalNotification = UILocalNotification()
-            promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
-            promptUser.fireDate = fireDate
-            UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
+        if let navController = self.window?.rootViewController as? UINavigationController {
+            if let timerViewController = navController.visibleViewController as? TimerViewController {
+                //send push
+            }
         }
+                
     }
-    
     
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -235,35 +223,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         NSNotificationCenter.defaultCenter().postNotificationName("didBecomeActive", object: nil)
-
-        
-//        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
-//            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(1)
-//            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
-//                // Penalize!
-//                
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let vc = storyboard.instantiateViewControllerWithIdentifier("toPunishVC") as! UIViewController
-////                self.window?.rootViewController = PunishmentViewController()
-//                self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
-//                self.window?.makeKeyAndVisible()
-                
-//                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                var punishViewController: PunishmentViewController = mainStoryboard.instantiateViewControllerWithIdentifier("toPunishVC") as! PunishmentViewController
-//                
-//                self.window?.rootViewController = PunishmentViewController()
-//                self.window?.makeKeyAndVisible()
-//            }
-//        }
-        
-        
     }
+    
+    
     
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        
-        
     }
     
     

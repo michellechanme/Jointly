@@ -16,7 +16,7 @@ class PunishmentViewController: UIViewController {
     var punishment : String?
 
     @IBAction func acceptPenalty(sender: AnyObject) {
-        
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func viewDidLoad() {

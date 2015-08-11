@@ -15,7 +15,7 @@ class TimerViewController: UIViewController {
     @IBOutlet weak var giveUpButton: UIButton!
     @IBOutlet weak var focusingLabel: UILabel!
     @IBOutlet weak var contactImage: UIImageView!
-    
+    var gracePeriodStart : NSDate?
     var name: String!
     var person : ABRecord?
     var punishment : String?
@@ -66,19 +66,62 @@ class TimerViewController: UIViewController {
             selector: "didBecomeActive:",
             name: "didBecomeActive",
             object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didEnterBackground:",
+            name: "didEnterBackground",
+            object: nil)
+        
+        
+        startTimer()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        
+        //UIApplicationDidEnterBackgroundNotification & UIApplicationWillEnterForegroundNotification shouldn't be quoted
+//        notificationCenter.addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+//        notificationCenter.addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
+
+    
+    func startTimer() {
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"update", userInfo: nil, repeats: true)
+    }
+    @objc func didEnterBackground(notification: NSNotification){
+        println("Enter background")
+//        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "gracePeriod")
+//        NSUserDefaults.standardUserDefaults().synchronize()
+        gracePeriodStart = NSDate()
+        let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
+        
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
+        
+        if inTimer {
+            var date = NSDate()
+            var dateComp = NSDateComponents()
+            dateComp.second = 1
+            var cal = NSCalendar.currentCalendar()
+            var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
+            
+            let startGracePeriod: NSDate
+            
+            var promptUser: UILocalNotification = UILocalNotification()
+            promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
+            promptUser.fireDate = fireDate
+            UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
+        }
+    }
+
     @objc func didBecomeActive(notification: NSNotification){
-        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
-            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(1)
+        println("Become active")
+        if let gracePeriodStart = gracePeriodStart {
+            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(5)
             if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
                 // Penalize!
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewControllerWithIdentifier("toPunishVC") as! UIViewController
-                
-                self.presentViewController(vc, animated: true, completion: nil)
+                performSegueWithIdentifier("toPunish", sender: nil)
             }
-            NSUserDefaults.standardUserDefaults().setObject(nil, forKey:"gracePeriod")
+//            NSUserDefaults.standardUserDefaults().setObject(nil, forKey:"gracePeriod")
         }
     }
     
