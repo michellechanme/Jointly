@@ -535,7 +535,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="Give Up">
-                                    <color key="titleColor" red="0.7843137255" green="0.32549019610000002" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.88952548536842091" green="0.34923608425789476" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -834,7 +834,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MJk-e3-tQS">
                                 <rect key="frame" x="0.0" y="153" width="600" height="180"/>
                                 <color key="backgroundColor" red="0.41960784309999999" green="0.58039215690000001" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -977,7 +977,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="gIN-dn-Oq6" kind="show" identifier="focusing" id="Wub-VU-9gq"/>
+                                    <action selector="focusButtonPressed:" destination="Ums-iU-c50" eventType="touchUpInside" id="QyM-5Z-oH7"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="hHX-Rw-XDD">
@@ -1119,6 +1119,7 @@
                         <outlet property="detailsButton" destination="IdT-9L-hWQ" id="PyN-HQ-4LQ"/>
                         <outlet property="focusButton" destination="Esc-jG-qw3" id="MRa-lc-gAh"/>
                         <outlet property="suggestPenaltyBox" destination="qoE-Rr-Zh6" id="efb-Ib-fjQ"/>
+                        <segue destination="gIN-dn-Oq6" kind="show" identifier="focusing" id="2ix-zh-2RR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOt-HZ-yeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1346,6 +1347,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D45-i4-Wzp"/>
-        <segue reference="Wub-VU-9gq"/>
+        <segue reference="2ix-zh-2RR"/>
     </inferredMetricsTieBreakers>
 </document>

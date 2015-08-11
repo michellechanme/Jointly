@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
         
-        //set up push notifications
+        // Setup push notifications
         let userNotificationTypes = (UIUserNotificationType.Alert |  UIUserNotificationType.Badge |  UIUserNotificationType.Sound);
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
@@ -188,18 +188,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         completionHandler(UIBackgroundFetchResult.NoData)
-        
-        if application.applicationState == UIApplicationState.Inactive || application.applicationState == UIApplicationState.Background {
-            //opened from a push notification when the app was on background
-            //            self.performSegueWithIdentifier("toPunish", sender: self)
-        }
     }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-        // receiving
     }
     
     func applicationDidEnterBackground(application: UIApplication) {

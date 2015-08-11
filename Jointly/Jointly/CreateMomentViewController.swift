@@ -31,12 +31,11 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     var selectedPerson : String?
     var navBar:UINavigationBar = UINavigationBar()
     
-    // Checking if a contact was selected
-    var person: ABRecord? {
-        didSet {
-//            nextButton.userInteractionEnabled = (person != nil)
-        }
-    }
+    var person: ABRecord?
+//        didSet {
+////            nextButton.userInteractionEnabled = (person != nil)
+//        }
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +147,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
             let bounds = self.addContact.bounds
             UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: nil, animations: {
                 self.addContact.bounds = CGRect(x: bounds.origin.x, y: bounds.origin.y - 20, width: bounds.size.width, height: bounds.size.height + 60)
-                //                self.addContact.enabled = false
                 }, completion: nil)
         }
     }

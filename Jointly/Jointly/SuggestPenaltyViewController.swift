@@ -29,8 +29,21 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     
     let PLACEHOLDER_TEXT = "i.e. Pay the next food bill"
     
-    // Details button alert
+//    @IBAction func focusButtonPressed(sender: AnyObject) {
+//        if suggestPenaltyBox.text != PLACEHOLDER_TEXT {
+//            performSegueWithIdentifier("focusing", sender: nil)
+//        } else {
+//            let animation = CABasicAnimation(keyPath: "position")
+//            animation.duration = 0.05
+//            animation.repeatCount = 2
+//            animation.autoreverses = true
+//            animation.fromValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x - 10, suggestPenaltyBox.center.y))
+//            animation.toValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x + 10, suggestPenaltyBox.center.y))
+//            suggestPenaltyBox.layer.addAnimation(animation, forKey: "position")
+//        }
+//    }
     
+    // Details button alert
     @IBAction func detailsButtonTapped(sender: AnyObject) {
         let alertController = UIAlertController(title: "Penalties", message:
             "Penalties occur by “giving up” or attempting to leave the app during the 'focusing' time.", preferredStyle: UIAlertControllerStyle.Alert)

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import AddressBook
+import AudioToolbox
 
 class TimerViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
+    var screenBrightness = UIScreen.mainScreen().brightness
     private var counter = 100.00
     var timer: NSTimer!
     var timerDuration: Double? = 0.0 {
@@ -73,31 +75,24 @@ class TimerViewController: UIViewController {
             name: "didEnterBackground",
             object: nil)
         
-        
         startTimer()
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
-        
-        //UIApplicationDidEnterBackgroundNotification & UIApplicationWillEnterForegroundNotification shouldn't be quoted
-//        notificationCenter.addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
-//        notificationCenter.addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-    
-
     
     func startTimer() {
         self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"update", userInfo: nil, repeats: true)
     }
+    
     @objc func didEnterBackground(notification: NSNotification){
         println("Enter background")
-//        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: "gracePeriod")
-//        NSUserDefaults.standardUserDefaults().synchronize()
+
         gracePeriodStart = NSDate()
         let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
         
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
         
-        if inTimer {
+        if inTimer && screenBrightness >= 0 {
             var date = NSDate()
             var dateComp = NSDateComponents()
             dateComp.second = 1
@@ -113,15 +108,14 @@ class TimerViewController: UIViewController {
         }
     }
 
-    @objc func didBecomeActive(notification: NSNotification){
+    @objc func didBecomeActive(notification: NSNotification) {
         println("Become active")
         if let gracePeriodStart = gracePeriodStart {
-            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(5)
+            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
             if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
                 // Penalize!
                 performSegueWithIdentifier("toPunish", sender: nil)
             }
-//            NSUserDefaults.standardUserDefaults().setObject(nil, forKey:"gracePeriod")
         }
     }
     
@@ -166,11 +160,15 @@ class TimerViewController: UIViewController {
     func update() {
         if (counter > 0) {
             counter--
-            //            timerLabel.text = stringFromTimeInterval(counter)
+            // timerLabel.text = stringFromTimeInterval(counter)
             NSNotificationCenter.defaultCenter().postNotificationName("update", object: nil)
         } else {
+//            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            println("vibrate")
             self.performSegueWithIdentifier("toHappy", sender: self)
+            println("perform segue")
             timer.invalidate()
+            println(counter)
         }
     }
     
