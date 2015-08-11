@@ -17,9 +17,9 @@ import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
@@ -114,7 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // setting target user for view controller / converting PFObject -> PFUser
                     let name = object?.valueForKey("name") as? String ?? "Someone"
                     vc.name = name
-
+                    
                     self.window!.makeKeyAndVisible()
                     self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
                 }
@@ -161,7 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let userid: String = userInfo["userid"] as? String, let punishment = userInfo["punishment"] as? String, let counter = userInfo["counter"] as? Double {
             let targetUser = PFUser(withoutDataWithObjectId: userid)
             targetUser.fetchIfNeededInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
-
+                
                 if error != nil {
                     println(error)
                     println(object?.objectForKey("username") as? String)
@@ -171,9 +171,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
-//                    vc.targetUser = object as? PFUser
+                    //                    vc.targetUser = object as? PFUser
                     vc.name = targetUser["name"] as? String
-//                    vc.person
+                    //                    vc.person
                     vc.punishment = punishment
                     vc.timerDuration = counter
                     
@@ -187,65 +187,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     completionHandler(UIBackgroundFetchResult.NoData)
                 }
             }
-        }   
+        }
         completionHandler(UIBackgroundFetchResult.NoData)
         
         if application.applicationState == UIApplicationState.Inactive || application.applicationState == UIApplicationState.Background {
             //opened from a push notification when the app was on background
-//            self.performSegueWithIdentifier("toPunish", sender: self)
+            //            self.performSegueWithIdentifier("toPunish", sender: self)
         }
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         
         // receiving
     }
-
+    
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-
-        var date = NSDate()
-        var dateComp = NSDateComponents()
-        dateComp.second = 1
-        var cal = NSCalendar.currentCalendar()
-        var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
         
-        let startGracePeriod: NSDate
+        let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
+        
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
         
-        var promptUser: UILocalNotification = UILocalNotification()
-        promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
-        promptUser.fireDate = fireDate
-        UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
+        if inTimer {
+            var date = NSDate()
+            var dateComp = NSDateComponents()
+            dateComp.second = 1
+            var cal = NSCalendar.currentCalendar()
+            var fireDate: NSDate = cal.dateByAddingComponents(dateComp, toDate: date, options: NSCalendarOptions.allZeros)!
+            
+            let startGracePeriod: NSDate
+            
+            var promptUser: UILocalNotification = UILocalNotification()
+            promptUser.alertBody = "Return to Jointly promptly to prevent yourself from being penalized!"
+            promptUser.fireDate = fireDate
+            UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
+        }
     }
-}
-
+    
+    
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        NSNotificationCenter.defaultCenter().postNotificationName("didBecomeActive", object: nil)
+
         
-        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
-            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
-            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
-                // Penalize!
+//        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
+//            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(1)
+//            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
+//                // Penalize!
+//                
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc = storyboard.instantiateViewControllerWithIdentifier("toPunishVC") as! UIViewController
+////                self.window?.rootViewController = PunishmentViewController()
+//                self.window!.rootViewController!.presentViewController(vc, animated: true, completion: nil)
+//                self.window?.makeKeyAndVisible()
                 
-//                let window = self.window
-//                window!.rootViewController = TimerViewController
-            }
-        }
+//                self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                var punishViewController: PunishmentViewController = mainStoryboard.instantiateViewControllerWithIdentifier("toPunishVC") as! PunishmentViewController
+//                
+//                self.window?.rootViewController = PunishmentViewController()
+//                self.window?.makeKeyAndVisible()
+//            }
+//        }
         
         
     }
-
+    
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
         
     }
-
+    
+    
+}

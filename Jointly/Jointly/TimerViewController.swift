@@ -36,7 +36,7 @@ class TimerViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default,handler: {
             action in
             self.performSegueWithIdentifier("toPunish", sender: self)
-            }))
+        }))
         
         alertController.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default,handler: nil))
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -60,12 +60,39 @@ class TimerViewController: UIViewController {
             let defaultImage = UIImage(named: "default")
             contactImage.image = defaultImage
         }
+        
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "didBecomeActive:",
+            name: "didBecomeActive",
+            object: nil)
+    }
+    
+    @objc func didBecomeActive(notification: NSNotification){
+        if let gracePeriodStart = NSUserDefaults.standardUserDefaults().objectForKey("gracePeriod") as? NSDate {
+            let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(1)
+            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
+                // Penalize!
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewControllerWithIdentifier("toPunishVC") as! UIViewController
+                
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            NSUserDefaults.standardUserDefaults().setObject(nil, forKey:"gracePeriod")
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(false)
+        super.viewDidAppear(animated)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateText:", name: "update", object: nil)
+        
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "inTimer")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "inTimer")
     }
     
     // Moves punishment from TimerVC to PunishmentVC
@@ -91,12 +118,12 @@ class TimerViewController: UIViewController {
         let hours = (interval / 3600)
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
-
+    
     // Updates timer
     func update() {
         if (counter > 0) {
             counter--
-//            timerLabel.text = stringFromTimeInterval(counter)
+            //            timerLabel.text = stringFromTimeInterval(counter)
             NSNotificationCenter.defaultCenter().postNotificationName("update", object: nil)
         } else {
             self.performSegueWithIdentifier("toHappy", sender: self)

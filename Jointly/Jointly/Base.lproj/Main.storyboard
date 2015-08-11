@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-vO-AbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="225"/>
+            <point key="canvasLocation" x="-639" y="225"/>
         </scene>
         <!--Happy View Controller-->
         <scene sceneID="Me3-4Q-Th1">
@@ -643,7 +643,7 @@
         <!--Punishment View Controller-->
         <scene sceneID="gJS-p0-hFw">
             <objects>
-                <viewController id="iZ4-O0-VpJ" customClass="PunishmentViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="toPunishVC" id="iZ4-O0-VpJ" customClass="PunishmentViewController" customModule="Jointly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="n34-2f-SfB"/>
                         <viewControllerLayoutGuide type="bottom" id="s06-Ig-nEV"/>
@@ -1367,6 +1367,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="i06-3M-1Aw"/>
-        <segue reference="Wub-VU-9gq"/>
+        <segue reference="umK-aC-NdK"/>
     </inferredMetricsTieBreakers>
 </document>

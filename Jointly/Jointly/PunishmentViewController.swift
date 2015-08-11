@@ -12,7 +12,9 @@ import UIKit
 class PunishmentViewController: UIViewController {
     @IBOutlet weak var punishmentLabel: UILabel!
     @IBOutlet weak var punishmentButton: UIButton!
+    
     var punishment : String?
+
     @IBAction func acceptPenalty(sender: AnyObject) {
         
     }
