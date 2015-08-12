@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import AddressBook
-import AudioToolbox
+//import AudioToolbox
 
 class TimerViewController: UIViewController {
     
@@ -75,17 +75,12 @@ class TimerViewController: UIViewController {
             name: "didEnterBackground",
             object: nil)
         
-        startTimer()
-        
         let notificationCenter = NSNotificationCenter.defaultCenter()
-    }
-    
-    func startTimer() {
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector:"update", userInfo: nil, repeats: true)
     }
     
     @objc func didEnterBackground(notification: NSNotification){
         println("Enter background")
+        println(screenBrightness)
 
         gracePeriodStart = NSDate()
         let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
@@ -113,8 +108,10 @@ class TimerViewController: UIViewController {
         if let gracePeriodStart = gracePeriodStart {
             let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
             if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
-                // Penalize!
-                performSegueWithIdentifier("toPunish", sender: nil)
+                if screenBrightness >= 0 {
+                    // Penalize!
+                    performSegueWithIdentifier("toPunish", sender: nil)
+                }
             }
         }
     }
@@ -160,15 +157,13 @@ class TimerViewController: UIViewController {
     func update() {
         if (counter > 0) {
             counter--
-            // timerLabel.text = stringFromTimeInterval(counter)
+            println(counter)
+//             timerLabel.text = stringFromTimeInterval(counter)
             NSNotificationCenter.defaultCenter().postNotificationName("update", object: nil)
         } else {
-//            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-            println("vibrate")
-            self.performSegueWithIdentifier("toHappy", sender: self)
-            println("perform segue")
             timer.invalidate()
-            println(counter)
+            self.performSegueWithIdentifier("toHappy", sender: self)
+            println("Invalidated")
         }
     }
     

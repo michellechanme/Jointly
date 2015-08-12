@@ -228,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wff-Zi-J5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="173" y="-524"/>
+            <point key="canvasLocation" x="-639" y="-524"/>
         </scene>
         <!--User Info View Controller-->
         <scene sceneID="43a-PH-lOC">
@@ -428,7 +428,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6A-vO-AbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="225"/>
+            <point key="canvasLocation" x="-371" y="225"/>
         </scene>
         <!--Happy View Controller-->
         <scene sceneID="Me3-4Q-Th1">
@@ -511,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eoO-yB-0mX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="964"/>
+            <point key="canvasLocation" x="423" y="1008"/>
         </scene>
         <!--Timer View Controller-->
         <scene sceneID="NUp-nJ-13q">
@@ -636,7 +636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2h-DP-jIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="225"/>
+            <point key="canvasLocation" x="824" y="225"/>
         </scene>
         <!--Punishment View Controller-->
         <scene sceneID="gJS-p0-hFw">
@@ -762,7 +762,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ckh-L2-9lK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="964"/>
+            <point key="canvasLocation" x="1152" y="1008"/>
         </scene>
         <!--Create Moment View Controller-->
         <scene sceneID="0vu-yT-Pbj">
@@ -945,7 +945,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLN-KE-ngL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="p4w-cj-1VL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1631" y="-524"/>
+            <point key="canvasLocation" x="85" y="-524"/>
         </scene>
         <!--Suggest Penalty View Controller-->
         <scene sceneID="b2D-yS-16V">
@@ -1125,7 +1125,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOt-HZ-yeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9cL-kM-wnn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2384" y="-524"/>
+            <point key="canvasLocation" x="824" y="-524"/>
         </scene>
         <!--Receive Suggest Penalty View Controller-->
         <scene sceneID="GXV-Hf-aGu">
@@ -1330,7 +1330,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ler-Rl-vxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-639" y="-524"/>
+            <point key="canvasLocation" x="-1451" y="-532"/>
         </scene>
     </scenes>
     <resources>
@@ -1347,6 +1347,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D45-i4-Wzp"/>
-        <segue reference="2ix-zh-2RR"/>
+        <segue reference="umK-aC-NdK"/>
     </inferredMetricsTieBreakers>
 </document>

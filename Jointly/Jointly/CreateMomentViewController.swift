@@ -156,13 +156,13 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     var timer: NSTimer?
     var timerStart: NSDate?
     
-    func startTimer() {
-        // get current system time
-        self.timerStart = NSDate()
-        
-        // start the timer
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
-    }
+//    func startTimer() {
+//        // get current system time
+//        self.timerStart = NSDate()
+//        
+//        // start the timer
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
+//    }
     
     // MARK: carrying contact's name to toSuggestPenlity's VC + other VCs
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -170,9 +170,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
-                    //                    vc.targetUser = object as? PFUser
+                    //  vc.targetUser = object as? PFUser
                     vc.name = targetUser["name"] as? String
-                    //                    vc.person
+                    //  vc.person
                     vc.punishment = punishment
                     vc.timerDuration = counter
                     
@@ -201,12 +201,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        if let navController = self.window?.rootViewController as? UINavigationController {
-            if let timerViewController = navController.visibleViewController as? TimerViewController {
-                //send push
-            }
-        }
-                
+//        if let navController = self.window?.rootViewController as? UINavigationController {
+//            if let timerViewController = navController.visibleViewController as? TimerViewController {
+//                //send push
+//            }
+//        }
+        
     }
     
     func applicationWillEnterForeground(application: UIApplication) {

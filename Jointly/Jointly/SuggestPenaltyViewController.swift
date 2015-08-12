@@ -29,19 +29,19 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     
     let PLACEHOLDER_TEXT = "i.e. Pay the next food bill"
     
-//    @IBAction func focusButtonPressed(sender: AnyObject) {
-//        if suggestPenaltyBox.text != PLACEHOLDER_TEXT {
-//            performSegueWithIdentifier("focusing", sender: nil)
-//        } else {
-//            let animation = CABasicAnimation(keyPath: "position")
-//            animation.duration = 0.05
-//            animation.repeatCount = 2
-//            animation.autoreverses = true
-//            animation.fromValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x - 10, suggestPenaltyBox.center.y))
-//            animation.toValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x + 10, suggestPenaltyBox.center.y))
-//            suggestPenaltyBox.layer.addAnimation(animation, forKey: "position")
-//        }
-//    }
+    @IBAction func focusButtonPressed(sender: AnyObject) {
+        if suggestPenaltyBox.text != PLACEHOLDER_TEXT {
+            performSegueWithIdentifier("focusing", sender: nil)
+        } else {
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.05
+            animation.repeatCount = 2
+            animation.autoreverses = true
+            animation.fromValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x - 10, suggestPenaltyBox.center.y))
+            animation.toValue = NSValue(CGPoint: CGPointMake(suggestPenaltyBox.center.x + 10, suggestPenaltyBox.center.y))
+            suggestPenaltyBox.layer.addAnimation(animation, forKey: "position")
+        }
+    }
     
     // Details button alert
     @IBAction func detailsButtonTapped(sender: AnyObject) {
@@ -53,7 +53,6 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     // For moving text view up when keyboard selected
-    
     struct MoveKeyboard {
         static let KEYBOARD_ANIMATION_DURATION : CGFloat = 0.3
         static let MINIMUM_SCROLL_FRACTION : CGFloat = 0.2;
@@ -63,13 +62,9 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     override func viewDidLoad() {
-        
-        applyPlaceholderStyle(suggestPenaltyBox!, placeholderText: PLACEHOLDER_TEXT)
-        
         super.viewDidLoad()
-        chosenContact.text = name
         
-        // Do any additional setup after loading the view.
+        chosenContact.text = name
         
         focusButton.setTitle("Focus on \(name as String!)", forState: .Normal)
         
@@ -86,11 +81,11 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         // corner radius of SuggestPenaltyBox
         suggestPenaltyBox.layer.cornerRadius = 5
         
+        applyPlaceholderStyle(suggestPenaltyBox!, placeholderText: PLACEHOLDER_TEXT)
+        
         // dismiss keyboard by swiping down
         var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
-        
         swipe.direction = UISwipeGestureRecognizerDirection.Down
-        
         self.view.addGestureRecognizer(swipe)
         
         // resize suggestPenalityBox to size
