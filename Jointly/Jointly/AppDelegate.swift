@@ -200,22 +200,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         
         println("Backgrounding because of lock button? \(ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress())")
+        var startTimer = NSDate()
             
         NSNotificationCenter.defaultCenter().postNotificationName("didEnterBackground", object: nil)
 
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-//        if let navController = self.window?.rootViewController as? UINavigationController {
-//            if let timerViewController = navController.visibleViewController as? TimerViewController {
-//                //send push
-//            }
-//        }
-        
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
         ScreenLockObserver.sharedObserver().applicationWillEnterForeground()
+        println("applicatoinWillEnterForeground")
 
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }

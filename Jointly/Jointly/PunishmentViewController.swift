@@ -16,7 +16,9 @@ class PunishmentViewController: UIViewController {
     var punishment : String?
 
     @IBAction func acceptPenalty(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {

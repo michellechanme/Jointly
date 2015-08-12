@@ -85,8 +85,14 @@ class TimerViewController: UIViewController {
         gracePeriodStart = NSDate()
         let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
         let phoneLocked = ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress()
-        
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
+
+        var startTimer: NSDate
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"timer")
+        
+        if phoneLocked {
+            gracePeriodStart = nil
+        }
         
         if inTimer && !phoneLocked {
             var date = NSDate()
@@ -105,24 +111,26 @@ class TimerViewController: UIViewController {
     }
 
     @objc func didBecomeActive(notification: NSNotification) {
+        let endTimer = NSDate()
+//        let elapsedTime = NSDate().timeIntervalSinceDate(startTimer)
+        
+        // NSDate() instantiates a new NSDate object
+        // timeIntervalSinceDate returns the time difference between that and start
+//        let elapsedTime = NSDate().timeIntervalSinceDate(NSDate())
+//        let duration = Int(elapsedTime)
+        
+//        let elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
+        
+//        println("elapsed time: \(duration)")
+        
         println("Become active")
         if let gracePeriodStart = gracePeriodStart {
             let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
-            let phoneLocked = ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress()
-            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending && phoneLocked {
+            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
                 // Penalize!
                 performSegueWithIdentifier("toPunish", sender: nil)
             }
         }
-    }
-    
-    func updateTimer() {
-        let start = NSDate()
-        let end = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let datecomponenets = calendar.components(NSCalendarUnit.CalendarUnitSecond, fromDate: start, toDate: end, options: nil)
-        let seconds = datecomponenets.second
-        println("Seconds: \(seconds)")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -147,7 +155,7 @@ class TimerViewController: UIViewController {
     }
     
     // Create circular image
-    func setPictureDesign(image: UIImageView){
+    func setPictureDesign(image: UIImageView) {
         image.layer.cornerRadius = image.frame.size.height/2
         image.layer.masksToBounds = true
         image.layer.borderWidth = 0;

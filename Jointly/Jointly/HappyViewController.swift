@@ -15,7 +15,9 @@ class HappyViewController: UIViewController {
     @IBOutlet weak var happyLabel: UILabel!
     
     @IBAction func homeButtonPressed(sender: AnyObject) {
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
+        self.presentViewController(vc, animated: true, completion: nil)
     }
     
     
