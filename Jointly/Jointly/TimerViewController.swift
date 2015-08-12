@@ -170,3 +170,22 @@ class TimerViewController: UIViewController {
         timerLabel.text = stringFromTimeInterval(counter)
     }
 }
+
+//extension NSDate {
+//    func hoursFrom(date:NSDate) -> Int {
+//        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+//    }
+//    func minutesFrom(date:NSDate) -> Int{
+//        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+//    }
+//    func secondsFrom(date:NSDate) -> Int{
+//        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+//    }
+//}
+//
+//let date1 = NSCalendar.currentCalendar().dateWithEra(1, year: 2014, month: 11, day: 28, hour: 5, minute: 9, second: 0, nanosecond: 0)!
+//let date2 = NSCalendar.currentCalendar().dateWithEra(1, year: 2015, month: 8, day: 28, hour: 5, minute: 9, second: 0, nanosecond: 0)!
+//
+//let hours = date2.hoursFrom(date1)     // 6,553
+//let minutes = date2.minutesFrom(date1) // 393,180
+//let seconds = date2.secondsFrom(date1) // 23,590,800
