@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        ScreenLockObserver.sharedObserver().applicationDidFinishLaunching()
+        
         Parse.setApplicationId("F4DIGtRF8bJDFJR3Yfpzl1VQFQv2N9s4OsbZRerW", clientKey: "9vWOLwceVNcln6l5Qf6kjA1gg6sMoU7ik9wmMeHQ")
         
         // Setup push notifications
@@ -196,6 +198,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(application: UIApplication) {
+        
+        println("Backgrounding because of lock button? \(ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress())")
+            
         NSNotificationCenter.defaultCenter().postNotificationName("didEnterBackground", object: nil)
 
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
@@ -210,6 +215,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        ScreenLockObserver.sharedObserver().applicationWillEnterForeground()
+
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     

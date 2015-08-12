@@ -20,7 +20,6 @@ class TimerViewController: UIViewController {
     var name: String!
     var person : ABRecord?
     var punishment : String?
-    var screenBrightness = UIScreen.mainScreen().brightness
     private var counter = 100.00
     var timer: NSTimer!
     var timerDuration: Double? = 0.0 {
@@ -69,25 +68,27 @@ class TimerViewController: UIViewController {
             name: "didBecomeActive",
             object: nil)
         
+        // equiv to UIApplicationDidEnterBackgroundNotification
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "didEnterBackground:",
             name: "didEnterBackground",
             object: nil)
         
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
     }
     
     @objc func didEnterBackground(notification: NSNotification){
         println("Enter background")
-        println(screenBrightness)
 
         gracePeriodStart = NSDate()
         let inTimer = NSUserDefaults.standardUserDefaults().boolForKey("inTimer")
+        let phoneLocked = ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress()
         
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey:"gracePeriod")
         
-        if inTimer && screenBrightness >= 0 {
+        if inTimer && !phoneLocked {
             var date = NSDate()
             var dateComp = NSDateComponents()
             dateComp.second = 1
@@ -107,13 +108,21 @@ class TimerViewController: UIViewController {
         println("Become active")
         if let gracePeriodStart = gracePeriodStart {
             let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
-            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending {
-                if screenBrightness >= 0 {
-                    // Penalize!
-                    performSegueWithIdentifier("toPunish", sender: nil)
-                }
+            let phoneLocked = ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress()
+            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending && !phoneLocked {
+                // Penalize!
+                performSegueWithIdentifier("toPunish", sender: nil)
             }
         }
+    }
+    
+    func updateTimer() {
+        let start = NSDate()
+        let end = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let datecomponenets = calendar.components(NSCalendarUnit.CalendarUnitSecond, fromDate: start, toDate: end, options: nil)
+        let seconds = datecomponenets.second
+        println("Seconds: \(seconds)")
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -153,6 +162,9 @@ class TimerViewController: UIViewController {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
+    // create start time of timer, duration - counter, fire (calc start time to now nstimeinternal)
+    // total timer duration - elapsed duration
+    
     // Updates timer
     func update() {
         if (counter > 0) {
@@ -170,22 +182,3 @@ class TimerViewController: UIViewController {
         timerLabel.text = stringFromTimeInterval(counter)
     }
 }
-
-//extension NSDate {
-//    func hoursFrom(date:NSDate) -> Int {
-//        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
-//    }
-//    func minutesFrom(date:NSDate) -> Int{
-//        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
-//    }
-//    func secondsFrom(date:NSDate) -> Int{
-//        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
-//    }
-//}
-//
-//let date1 = NSCalendar.currentCalendar().dateWithEra(1, year: 2014, month: 11, day: 28, hour: 5, minute: 9, second: 0, nanosecond: 0)!
-//let date2 = NSCalendar.currentCalendar().dateWithEra(1, year: 2015, month: 8, day: 28, hour: 5, minute: 9, second: 0, nanosecond: 0)!
-//
-//let hours = date2.hoursFrom(date1)     // 6,553
-//let minutes = date2.minutesFrom(date1) // 393,180
-//let seconds = date2.secondsFrom(date1) // 23,590,800

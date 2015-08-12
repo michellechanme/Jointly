@@ -7,3 +7,4 @@
 //
 
 #import "PFUser+Digits.h"
+#import "ScreenLockObserver.h"

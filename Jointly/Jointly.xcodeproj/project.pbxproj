@@ -12,6 +12,7 @@
 		5637B5FD1B6A800200A3DDA8 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */; };
 		564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */; };
 		5654A07E1B7021A80053B53C /* PunishmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5654A07D1B7021A80053B53C /* PunishmentViewController.swift */; };
+		565577991B7BBF53009B2D5E /* ScreenLockObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 565577981B7BBF53009B2D5E /* ScreenLockObserver.m */; };
 		5663FBBA1B7546080039109D /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5663FBB91B7546080039109D /* HappyViewController.swift */; };
 		5663FBBC1B7568AA0039109D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5663FBBB1B7568AA0039109D /* Crashlytics.framework */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
@@ -65,6 +66,8 @@
 		5637B5FC1B6A800200A3DDA8 /* UserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		564E9E381B6FD5C900115FB5 /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		5654A07D1B7021A80053B53C /* PunishmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PunishmentViewController.swift; sourceTree = "<group>"; };
+		565577971B7BBF53009B2D5E /* ScreenLockObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenLockObserver.h; sourceTree = "<group>"; };
+		565577981B7BBF53009B2D5E /* ScreenLockObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenLockObserver.m; sourceTree = "<group>"; };
 		5663FBB91B7546080039109D /* HappyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HappyViewController.swift; sourceTree = "<group>"; };
 		5663FBBB1B7568AA0039109D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		56A22A131B4EE2860061BF26 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				565577971B7BBF53009B2D5E /* ScreenLockObserver.h */,
+				565577981B7BBF53009B2D5E /* ScreenLockObserver.m */,
 				56A22A141B4EE2860061BF26 /* Info.plist */,
 				56B273AC1B5977EE00B7070E /* Jointly-Bridging-Header.h */,
 				56647E371B616ED500DE40D7 /* PFUser+Digits.h */,
@@ -425,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				565577991B7BBF53009B2D5E /* ScreenLockObserver.m in Sources */,
 				56CC78131B5866DA001CD4BC /* SuggestPenaltyViewController.swift in Sources */,
 				56369B541B67F4020013DEDE /* MaybeFocusingViewController.swift in Sources */,
 				56CE42251B66F71D0040DEE8 /* TimerViewController.swift in Sources */,
