@@ -109,7 +109,7 @@ class TimerViewController: UIViewController {
         if let gracePeriodStart = gracePeriodStart {
             let gracePeriodEnd = gracePeriodStart.dateByAddingTimeInterval(10)
             let phoneLocked = ScreenLockObserver.sharedObserver().didEnterBackgroundDueToLockButtonPress()
-            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending && !phoneLocked {
+            if gracePeriodEnd.compare(NSDate()) == .OrderedAscending && phoneLocked {
                 // Penalize!
                 performSegueWithIdentifier("toPunish", sender: nil)
             }
