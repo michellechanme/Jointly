@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import AddressBook
-//import AudioToolbox
+import AudioToolbox
 
 class TimerViewController: UIViewController {
     
@@ -157,13 +157,11 @@ class TimerViewController: UIViewController {
     func update() {
         if (counter > 0) {
             counter--
-            println(counter)
-//             timerLabel.text = stringFromTimeInterval(counter)
             NSNotificationCenter.defaultCenter().postNotificationName("update", object: nil)
         } else {
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             timer.invalidate()
             self.performSegueWithIdentifier("toHappy", sender: self)
-            println("Invalidated")
         }
     }
     

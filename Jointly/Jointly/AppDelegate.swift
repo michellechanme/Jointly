@@ -106,9 +106,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (object: PFObject?, error:NSError?) -> Void in
                 
                 if error == nil {
-                    // Show MaybeFocusViewController
+                    // Show TimerViewController
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewControllerWithIdentifier("MaybeFocusViewController") as! MaybeFocusViewController
+                    let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
                     
                     // setting target user for view controller / converting PFObject -> PFUser
                     let name = object?.valueForKey("name") as? String ?? "Someone"

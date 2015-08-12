@@ -14,6 +14,11 @@ class HappyViewController: UIViewController {
     @IBOutlet weak var happyImage: UIImageView!
     @IBOutlet weak var happyLabel: UILabel!
     
+    @IBAction func homeButtonPressed(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

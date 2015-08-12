@@ -55,18 +55,19 @@ class MaybeFocusViewController: UIViewController {
         image.layer.borderWidth = 0;
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if (segue.identifier == "toReceiveSuggestPenalty") {
-            var destinationViewController = segue.destinationViewController as! ReceiveSuggestPenaltyViewController
-            destinationViewController.person = person
-            destinationViewController.name = name
-        }
-        if (segue.identifier == "toTimer") {
-            var destinationViewController = segue.destinationViewController as! TimerViewController
-//            destinationViewController.timerDuration = timerDuration
-            destinationViewController.person = person
-            destinationViewController.name = name
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        if (segue.identifier == "toReceiveSuggestPenalty") {
+//            var destinationViewController = segue.destinationViewController as! ReceiveSuggestPenaltyViewController
+//            destinationViewController.person = person
+//            destinationViewController.name = name
+//        }
+//        
+//        if (segue.identifier == "toTimer") {
+//            var destinationViewController = segue.destinationViewController as! TimerViewController
+////            destinationViewController.timerDuration = timerDuration
+//            destinationViewController.person = person
+//            destinationViewController.name = name
+//        }
+//    }
 }

@@ -40,12 +40,13 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        
         person = nil
         
-        navBar.tintColor = UIColor.whiteColor()
         setupBarStyle()
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        navBar.tintColor = UIColor.whiteColor()
         
         // part of return keyboard
         self.contactTextField.delegate = self
@@ -60,6 +61,8 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+        
          var nav = self.navigationController?.navigationBar
          nav?.tintColor = UIColor.whiteColor()
         
