@@ -159,14 +159,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     var timer: NSTimer?
     var timerStart: NSDate?
     
-//    func startTimer() {
-//        // get current system time
-//        self.timerStart = NSDate()
-//        
-//        // start the timer
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update:"), userInfo: nil, repeats: true)
-//    }
-    
     // MARK: carrying contact's name to toSuggestPenlity's VC + other VCs
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let countdownDurationMinutes = Int64(countdownTimer.countDownDuration) / 60
@@ -197,7 +189,10 @@ func sanitizePhoneNumber(unfilteredNum: String) -> String {
             filteredNum.append(UnicodeScalar(char))
         }
     }
-    return filteredNum
+    let numberLength = count(filteredNum) - 10
+    var filteredNum2 = "+1" + filteredNum.substringFromIndex(advance(filteredNum.startIndex, numberLength))
+    println("!!!!!!!!"+filteredNum2)
+    return filteredNum2
 }
 
 // MARK: getting contact's name

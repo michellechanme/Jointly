@@ -111,6 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // Show TimerViewController
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
+                    println("getting called?")
                     
                     // setting target user for view controller / converting PFObject -> PFUser
                     let name = object?.valueForKey("name") as? String ?? "Someone"
@@ -170,6 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 } else if PFUser.currentUser() != nil {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc = storyboard.instantiateViewControllerWithIdentifier("focusing") as! TimerViewController
+                    println("am i getting called?")
                     
                     // setting target user for view controller / converting PFObject -> PFUser
                     //  vc.targetUser = object as? PFUser
@@ -178,11 +180,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     vc.punishment = punishment
                     vc.timerDuration = counter
                     
-                    if let navController = self.window!.rootViewController as? UINavigationController {
-                        navController.setViewControllers([vc], animated: true)
-                    } else {
-                        self.window!.rootViewController = vc
-                    }
+                    self.window!.rootViewController = vc
+                    println("second option")
+
                     completionHandler(UIBackgroundFetchResult.NewData)
                 } else {
                     completionHandler(UIBackgroundFetchResult.NoData)

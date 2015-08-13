@@ -46,6 +46,7 @@ class TimerViewController: UIViewController {
     let currentUserName = PFUser.currentUser()?.valueForKey("name") as? String ?? "Someone"
     
     override func viewDidLoad() {
+        println("View did load")
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         
@@ -127,6 +128,7 @@ class TimerViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
+        println("View did appear")
         super.viewDidAppear(animated)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateText:", name: "update", object: nil)
@@ -135,6 +137,7 @@ class TimerViewController: UIViewController {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        println("View did disappear")
         super.viewDidDisappear(animated)
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "inTimer")
     }
