@@ -14,6 +14,7 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var namePrompt: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var goButton: UIButton!
+    
     @IBAction func goPressed(sender: AnyObject) {
         
         // checking if we have current user. if so, save them!
@@ -22,6 +23,10 @@ class UserInfoViewController: UIViewController, UITextFieldDelegate {
             user.saveInBackground()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "Onboarded")
             NSUserDefaults.standardUserDefaults().synchronize()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewControllerWithIdentifier("HomeViewController") as! UIViewController
+            self.presentViewController(vc, animated: true, completion: nil)
         }
     }
     

@@ -27,7 +27,7 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
     @IBAction func unwindToCreateMoment(sender: AnyObject) {
     }
     
-    let PLACEHOLDER_TEXT = "i.e. Pay the next food bill"
+    let PLACEHOLDER_TEXT = "Punishment: i.e. Pay the next food bill"
     
     @IBAction func focusButtonPressed(sender: AnyObject) {
         if suggestPenaltyBox.text != PLACEHOLDER_TEXT {
