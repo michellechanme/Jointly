@@ -111,17 +111,10 @@ class TimerViewController: UIViewController {
     }
 
     @objc func didBecomeActive(notification: NSNotification) {
-        let endTimer = NSDate()
-//        let elapsedTime = NSDate().timeIntervalSinceDate(startTimer)
-        
-        // NSDate() instantiates a new NSDate object
-        // timeIntervalSinceDate returns the time difference between that and start
-//        let elapsedTime = NSDate().timeIntervalSinceDate(NSDate())
-//        let duration = Int(elapsedTime)
-        
-//        let elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
-        
-//        println("elapsed time: \(duration)")
+        if let date = NSUserDefaults.standardUserDefaults().objectForKey("timer") as? NSDate {
+            let elapsedTime = Int(NSDate().timeIntervalSinceDate(date))
+                counter -= Double(elapsedTime)
+        }
         
         println("Become active")
         if let gracePeriodStart = gracePeriodStart {
