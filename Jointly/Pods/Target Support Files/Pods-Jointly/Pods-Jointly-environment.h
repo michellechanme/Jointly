@@ -18,3 +18,9 @@
 #define COCOAPODS_VERSION_MINOR_FlurrySDK_FlurrySDK 6
 #define COCOAPODS_VERSION_PATCH_FlurrySDK_FlurrySDK 0
 
+// libPhoneNumber-iOS
+#define COCOAPODS_POD_AVAILABLE_libPhoneNumber_iOS
+#define COCOAPODS_VERSION_MAJOR_libPhoneNumber_iOS 0
+#define COCOAPODS_VERSION_MINOR_libPhoneNumber_iOS 8
+#define COCOAPODS_VERSION_PATCH_libPhoneNumber_iOS 7
+

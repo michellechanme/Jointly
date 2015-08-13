@@ -209,6 +209,71 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
         image.layer.borderWidth = 0;
     }
     
+    func sanitizePhone(number: String) ->String {
+        var phone = number
+        var final = ""
+        let phoneUtil = NBPhoneNumberUtil()
+        
+        if (phone as NSString).substringToIndex(2) == "00" {
+            phone = "+" + (phone as NSString).substringFromIndex(2)
+        }
+        
+        if phone.rangeOfString("+") != nil {
+            
+            //there is a plus in the number
+            let countryCode = phoneUtil.extractCountryCode(phone, nationalNumber: nil)
+            var region = phoneUtil.getRegionCodeForCountryCode(countryCode)
+            var parsedNumber = phoneUtil.parse(phone, defaultRegion: region, error: nil)
+            
+            final = phoneUtil.format(parsedNumber, numberFormat: NBEPhoneNumberFormatE164, error: nil)
+            
+        } else {
+            
+            var location = phoneUtil.countryCodeByCarrier()
+            
+            //            location = "IL"
+            //            let location = phoneUtil.getCountryCodeForRegion("IL")
+            
+            let exampleNumber =  phoneUtil.getExampleNumber(location, error: nil)
+            let nationalPhone = phoneUtil.format(exampleNumber, numberFormat: NBEPhoneNumberFormatNATIONAL, error: nil)
+            println(nationalPhone)
+            
+            let normalizedExample = phoneUtil.normalizeDigitsOnly(nationalPhone)
+            let exampleCount = count(normalizedExample)
+            println(exampleCount)
+            
+            let normalizedPhone = phoneUtil.normalizeDigitsOnly(phone)
+            println(normalizedPhone)
+            
+            if phoneUtil.isValidNumberForRegion(phoneUtil.parse(phone, defaultRegion: location, error: nil), regionCode: location){
+                //this is just a normal number
+                //in this country
+                //for example (415) 419-1510
+                // let parsedPhone = phoneUtil.parseWithPhoneCarrierRegion(phone, error: nil)
+                
+                let parsedPhone = phoneUtil.parse(phone, defaultRegion: location, error: nil)
+                final = phoneUtil.format(parsedPhone, numberFormat: NBEPhoneNumberFormatE164, error: nil)
+                
+            } else {
+                //this is a foreign number
+                //and the idiot forgot the +
+                //or its just a random number
+                
+                phone = "+" + phone
+                
+                let countryCode = phoneUtil.extractCountryCode(phone, nationalNumber: nil)
+                let region = phoneUtil.getRegionCodeForCountryCode(countryCode)
+                let parsedPhone = phoneUtil.parse(phone, defaultRegion: region, error: nil)
+                
+                final = phoneUtil.format(parsedPhone, numberFormat: NBEPhoneNumberFormatE164, error: nil)
+            }
+        }
+        println("FINAL " + final)
+        primaryPhone = final
+        println("primary phone: \(primaryPhone)")
+        return final
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "focusing") {
@@ -228,13 +293,27 @@ class SuggestPenaltyViewController: UIViewController, UITextFieldDelegate, UITex
             let installationQuery = PFInstallation.query()
             let userQuery = PFUser.query()!
             
-            println(primaryPhone)
+            println("primary phone123: \(primaryPhone!)")
 
-            userQuery.whereKey("phone", equalTo: sanitizePhoneNumber(primaryPhone ?? "")) // primaryPhone
+            userQuery.whereKey("phone", equalTo: primaryPhone!) // primaryPhone
+            println("phone: \(primaryPhone)")
             
             installationQuery?.whereKey("user", matchesQuery: userQuery)
+//
+//            userQuery.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
+//                if let error = error {
+//                    println(error.description)
+//                } else {
+//                    if let users = results as? [PFUser] {
+//                        for user in users {
+//                            println("BOOM" + user.username!)
+//                        }
+//                    }
+//                }
+//            })
+
             let push = PFPush()
-            push.setQuery(installationQuery);
+            push.setQuery(installationQuery)
             push.setData(data)
             push.sendPushInBackgroundWithBlock({ (success, error) -> Void in
                 

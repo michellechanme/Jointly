@@ -8,3 +8,6 @@
 
 #import "PFUser+Digits.h"
 #import "ScreenLockObserver.h"
+#import "RMPhoneFormat.h"
+#import "libPhoneNumber-iOS/NBPhoneNumber.h"
+#import "libPhoneNumber-iOS/NBPhoneNumberUtil.h"

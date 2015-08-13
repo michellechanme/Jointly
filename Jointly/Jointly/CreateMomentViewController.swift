@@ -30,7 +30,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     var firstNameContact: String?
     var selectedPerson : String?
     var navBar:UINavigationBar = UINavigationBar()
-    
     var person: ABRecord?
 //        didSet {
 ////            nextButton.userInteractionEnabled = (person != nil)
@@ -97,6 +96,13 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         if addContact.selected == false {
             let picker = ABPeoplePickerNavigationController()
             picker.peoplePickerDelegate = self
+
+//            // display only numbers
+//            let number: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
+//            if (ABMultiValueGetCount(person) > 0) {
+//                let index = 0 as CFIndex
+//            }
+            
             presentViewController(picker, animated: true, completion: nil)
         } else {
             addContact.selected = false
@@ -131,6 +137,22 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
                 if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
                     println("Local contact has phone number \(primaryPhone)")
                     primaryPhoneNumber = primaryPhone as? String
+                    
+                    primaryPhoneNumber = sanitizePhone(primaryPhoneNumber!)
+                    let query = PFQuery(className: "_User")
+                    query.whereKey("phone", equalTo: primaryPhoneNumber!)
+                    query.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
+                        if let error = error {
+                            println(error.description)
+                        } else {
+                            if let users = results as? [PFUser] {
+                                for user in users {
+                                    println(user.username)
+                                }
+                            }
+                        }
+                    })
+                    println("Local contact has phone number \(primaryPhone)")
                     
                     if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
                     }
@@ -181,18 +203,81 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
-func sanitizePhoneNumber(unfilteredNum: String) -> String {
-    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
-    var filteredNum = String()
-    for char in unfilteredNum.utf16 {
-        if acceptedChars.characterIsMember(char) {
-            filteredNum.append(UnicodeScalar(char))
+//func sanitizePhoneNumber(unfilteredNum: String) -> String {
+//    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
+//    var filteredNum = String()
+//    for char in unfilteredNum.utf16 {
+//        if acceptedChars.characterIsMember(char) {
+//            filteredNum.append(UnicodeScalar(char))
+//        }
+//    }
+//    let numberLength = count(filteredNum) - 10
+//    var filteredNum2 = "+1" + filteredNum.substringFromIndex(advance(filteredNum.startIndex, numberLength))
+//    println("!!!!!!!!"+filteredNum2)
+//    return filteredNum2
+//}
+
+func sanitizePhone(number: String) ->String {
+    var phone = number
+    var final = ""
+    let phoneUtil = NBPhoneNumberUtil()
+    
+    if (phone as NSString).substringToIndex(2) == "00" {
+        phone = "+" + (phone as NSString).substringFromIndex(2)
+    }
+    
+    if phone.rangeOfString("+") != nil {
+        
+        //there is a plus in the number
+        let countryCode = phoneUtil.extractCountryCode(phone, nationalNumber: nil)
+        var region = phoneUtil.getRegionCodeForCountryCode(countryCode)
+        var parsedNumber = phoneUtil.parse(phone, defaultRegion: region, error: nil)
+        
+        final = phoneUtil.format(parsedNumber, numberFormat: NBEPhoneNumberFormatE164, error: nil)
+        
+    } else {
+        
+        var location = phoneUtil.countryCodeByCarrier()
+        
+        //            location = "IL"
+        //            let location = phoneUtil.getCountryCodeForRegion("IL")
+        
+        let exampleNumber =  phoneUtil.getExampleNumber(location, error: nil)
+        let nationalPhone = phoneUtil.format(exampleNumber, numberFormat: NBEPhoneNumberFormatNATIONAL, error: nil)
+        println(nationalPhone)
+        
+        let normalizedExample = phoneUtil.normalizeDigitsOnly(nationalPhone)
+        let exampleCount = count(normalizedExample)
+        println(exampleCount)
+        
+        let normalizedPhone = phoneUtil.normalizeDigitsOnly(phone)
+        println(normalizedPhone)
+        
+        if phoneUtil.isValidNumberForRegion(phoneUtil.parse(phone, defaultRegion: location, error: nil), regionCode: location){
+            //this is just a normal number
+            //in this country
+            //for example (415) 419-1510
+            // let parsedPhone = phoneUtil.parseWithPhoneCarrierRegion(phone, error: nil)
+            
+            let parsedPhone = phoneUtil.parse(phone, defaultRegion: location, error: nil)
+            final = phoneUtil.format(parsedPhone, numberFormat: NBEPhoneNumberFormatE164, error: nil)
+            
+        } else {
+            //this is a foreign number
+            //and the idiot forgot the +
+            //or its just a random number
+            
+            phone = "+" + phone
+            
+            let countryCode = phoneUtil.extractCountryCode(phone, nationalNumber: nil)
+            let region = phoneUtil.getRegionCodeForCountryCode(countryCode)
+            let parsedPhone = phoneUtil.parse(phone, defaultRegion: region, error: nil)
+            
+            final = phoneUtil.format(parsedPhone, numberFormat: NBEPhoneNumberFormatE164, error: nil)
         }
     }
-    let numberLength = count(filteredNum) - 10
-    var filteredNum2 = "+1" + filteredNum.substringFromIndex(advance(filteredNum.startIndex, numberLength))
-    println("!!!!!!!!"+filteredNum2)
-    return filteredNum2
+    println("FINAL " + final)
+    return final
 }
 
 // MARK: getting contact's name

@@ -16,6 +16,7 @@
 		5663FBBA1B7546080039109D /* HappyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5663FBB91B7546080039109D /* HappyViewController.swift */; };
 		5663FBBC1B7568AA0039109D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5663FBBB1B7568AA0039109D /* Crashlytics.framework */; };
 		56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */ = {isa = PBXBuildFile; fileRef = 56647E381B616ED500DE40D7 /* PFUser+Digits.m */; };
+		56713FB91B7CFECD006A2A3E /* RMPhoneFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 56713FB81B7CFECD006A2A3E /* RMPhoneFormat.m */; };
 		56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A22A151B4EE2860061BF26 /* AppDelegate.swift */; };
 		56A22A1D1B4EE2860061BF26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A1C1B4EE2860061BF26 /* Images.xcassets */; };
 		56A22A201B4EE2860061BF26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56A22A1E1B4EE2860061BF26 /* LaunchScreen.xib */; };
@@ -72,6 +73,9 @@
 		5663FBBB1B7568AA0039109D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		56647E371B616ED500DE40D7 /* PFUser+Digits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PFUser+Digits.h"; sourceTree = "<group>"; };
 		56647E381B616ED500DE40D7 /* PFUser+Digits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PFUser+Digits.m"; sourceTree = "<group>"; };
+		56713FB71B7CFECD006A2A3E /* RMPhoneFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPhoneFormat.h; sourceTree = "<group>"; };
+		56713FB81B7CFECD006A2A3E /* RMPhoneFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPhoneFormat.m; sourceTree = "<group>"; };
+		56713FBA1B7CFEDE006A2A3E /* PhoneFormats.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhoneFormats.dat; sourceTree = "<group>"; };
 		56A22A101B4EE2860061BF26 /* Jointly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jointly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A22A141B4EE2860061BF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56A22A151B4EE2860061BF26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +193,9 @@
 		56A22A131B4EE2860061BF26 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				56713FB71B7CFECD006A2A3E /* RMPhoneFormat.h */,
+				56713FB81B7CFECD006A2A3E /* RMPhoneFormat.m */,
+				56713FBA1B7CFEDE006A2A3E /* PhoneFormats.dat */,
 				565577971B7BBF53009B2D5E /* ScreenLockObserver.h */,
 				565577981B7BBF53009B2D5E /* ScreenLockObserver.m */,
 				56A22A141B4EE2860061BF26 /* Info.plist */,
@@ -442,6 +449,7 @@
 				56FFD43F1B55A0C9002AC02E /* HomeViewController.swift in Sources */,
 				564E9E391B6FD5C900115FB5 /* UserInfoModel.swift in Sources */,
 				56A22A461B4F40E20061BF26 /* OnBoardViewController.swift in Sources */,
+				56713FB91B7CFECD006A2A3E /* RMPhoneFormat.m in Sources */,
 				5663FBBA1B7546080039109D /* HappyViewController.swift in Sources */,
 				56647E391B616ED500DE40D7 /* PFUser+Digits.m in Sources */,
 				56A22A161B4EE2860061BF26 /* AppDelegate.swift in Sources */,
@@ -583,7 +591,7 @@
 				INFOPLIST_FILE = Jointly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a511201-13e9-47f5-afb1-a0362171b75e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jointly/Jointly-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -604,7 +612,7 @@
 				INFOPLIST_FILE = Jointly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0a511201-13e9-47f5-afb1-a0362171b75e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Jointly/Jointly-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

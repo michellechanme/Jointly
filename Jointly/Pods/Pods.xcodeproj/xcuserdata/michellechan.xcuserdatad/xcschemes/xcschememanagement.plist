@@ -4,17 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-Jointly-libPhoneNumber-iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Jointly.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>EDF80EE6C659A0DC615BFAE9</key>
+		<key>308BAEE0002F31C10FA9D219</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5337D1FE07B51DF1361377BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -4,10 +4,9 @@
 target 'Jointly' do
 
 pod 'FlurrySDK'
-
+    pod 'libPhoneNumber-iOS'
 end
 
 target 'JointlyTests' do
 
 end
-

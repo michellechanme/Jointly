@@ -2,11 +2,14 @@ PODS:
   - FlurrySDK (6.6.0):
     - FlurrySDK/FlurrySDK (= 6.6.0)
   - FlurrySDK/FlurrySDK (6.6.0)
+  - libPhoneNumber-iOS (0.8.7)
 
 DEPENDENCIES:
   - FlurrySDK
+  - libPhoneNumber-iOS
 
 SPEC CHECKSUMS:
   FlurrySDK: 8478625434c06b323338f776758162756d92c3ed
+  libPhoneNumber-iOS: 1bccd3288375d954b0b904e26061cecaa0fb83d6
 
 COCOAPODS: 0.37.2
