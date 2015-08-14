@@ -16,8 +16,8 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo by Konstantin Bulygin from Noun Project | SMS Verification by Twitter's Digits " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tQ-pb-EEC">
-                    <rect key="frame" x="110" y="450" width="260.5" height="10"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo by Konstantin Bulygin from Noun Project | SMS Verification by Twitter's Digits | Crashylitics by Twitter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tQ-pb-EEC">
+                    <rect key="frame" x="74" y="450" width="332" height="10"/>
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="7"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>

@@ -110,7 +110,7 @@ class TimerViewController: UIViewController {
             promptUser.fireDate = fireDate
             UIApplication.sharedApplication().scheduleLocalNotification(promptUser)
         }
-    }
+    }   
 
     @objc func didBecomeActive(notification: NSNotification) {
         if let date = NSUserDefaults.standardUserDefaults().objectForKey("timer") as? NSDate {
