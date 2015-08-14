@@ -27,6 +27,7 @@ class TimerViewController: UIViewController {
         didSet {
             timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
             counter = timerDuration!
+            NSUserDefaults.standardUserDefaults().setObject(counter, forKey: "updateTimer")
         }
     }
     
@@ -184,5 +185,7 @@ class TimerViewController: UIViewController {
     // Displays timer
     func updateText(notification: NSNotification) {
         timerLabel.text = stringFromTimeInterval(counter)
+        NSUserDefaults.standardUserDefaults().setObject(counter, forKey: "updateTimer")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
