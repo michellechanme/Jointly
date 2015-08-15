@@ -132,38 +132,21 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
-        if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
-            if ABMultiValueGetCount(phoneNumbers) > 0 {
-                if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
-                    println("Local contact has phone number \(primaryPhone)")
-                    primaryPhoneNumber = primaryPhone as? String
-                    
-                    primaryPhoneNumber = sanitizePhone(primaryPhoneNumber!)
-                    let query = PFQuery(className: "_User")
-                    query.whereKey("phone", equalTo: primaryPhoneNumber!)
-                    query.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
-                        if let error = error {
-                            println(error.description)
-                        } else {
-                            if let users = results as? [PFUser] {
-                                for user in users {
-                                    println(user.username)
-                                }
-                            }
-                        }
-                    })
-                    println("Local contact has phone number \(primaryPhone)")
-                    
-                    if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
-                    }
-                } else {
-                    println("Could not retrieve user's primary phone number")
-                }
+        let query = PFQuery(className: "_User")
+        query.whereKey("phone", equalTo: primaryPhoneNumber!)
+        query.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
+            if let error = error {
+                println(error.description)
             } else {
-                println("Contact has no phone numbers")
+                if let users = results as? [PFUser] {
+                    for user in users {
+                        println(user.username)
+                    }
+                }
             }
-        } else {
-            println("Contact has no phone property")
+        })
+        
+        if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
         }
         
         if person != nil {
@@ -286,12 +269,30 @@ extension CreateMomentViewController: ABPeoplePickerNavigationControllerDelegate
     func peoplePickerNavigationController(peoplePicker: ABPeoplePickerNavigationController!, didSelectPerson person: ABRecord!) {
         println(person)
         
+        
         let nameCFString: CFString = ABRecordCopyCompositeName(person).takeRetainedValue()
         let name: NSString = nameCFString as NSString
         selectedPerson = name as? String
         contactTextField.text = name as String
         
         self.person = person
+        
+        if let phoneNumbers: AnyObject = ABRecordCopyValue(person, kABPersonPhoneProperty)?.takeRetainedValue() {
+            if ABMultiValueGetCount(phoneNumbers) > 0 {
+                if let primaryPhone: AnyObject = ABMultiValueCopyValueAtIndex(phoneNumbers, 0)?.takeRetainedValue() {
+                    println("Local contact has phone number \(primaryPhone)")
+                    primaryPhoneNumber = primaryPhone as? String
+                    
+                    primaryPhoneNumber = sanitizePhone(primaryPhoneNumber!)
+                } else {
+                    println("Could not retrieve user's primary phone number")
+                }
+            } else {
+                println("Contact has no phone numbers")
+            }
+        } else {
+            println("Contact has no phone property")
+        }
         
         addContact.selected = true
     }
