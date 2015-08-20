@@ -132,25 +132,25 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
-        let query = PFQuery(className: "_User")
-        query.whereKey("phone", equalTo: primaryPhoneNumber!)
-        query.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
-            if let error = error {
-                println(error.description)
-            } else {
-                if let users = results as? [PFUser] {
-                    for user in users {
-                        println(user.username)
-                    }
-                }
-            }
-        })
-        
         if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
         }
         
         if person != nil {
             performSegueWithIdentifier("toSuggestPenality", sender: nil)
+            
+            let query = PFQuery(className: "_User")
+            query.whereKey("phone", equalTo: primaryPhoneNumber!)
+            query.findObjectsInBackgroundWithBlock({ (results: [AnyObject]?, error: NSError?) -> Void in
+                if let error = error {
+                    println(error.description)
+                } else {
+                    if let users = results as? [PFUser] {
+                        for user in users {
+                            println(user.username)
+                        }
+                    }
+                }
+            })
         } else {
             let bounds = self.addContact.bounds
             UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: nil, animations: {
@@ -185,20 +185,6 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         }
     }
 }
-
-//func sanitizePhoneNumber(unfilteredNum: String) -> String {
-//    let acceptedChars = NSCharacterSet(charactersInString: "+1234567890")
-//    var filteredNum = String()
-//    for char in unfilteredNum.utf16 {
-//        if acceptedChars.characterIsMember(char) {
-//            filteredNum.append(UnicodeScalar(char))
-//        }
-//    }
-//    let numberLength = count(filteredNum) - 10
-//    var filteredNum2 = "+1" + filteredNum.substringFromIndex(advance(filteredNum.startIndex, numberLength))
-//    println("!!!!!!!!"+filteredNum2)
-//    return filteredNum2
-//}
 
 func sanitizePhone(number: String) ->String {
     var phone = number
@@ -247,7 +233,7 @@ func sanitizePhone(number: String) ->String {
             
         } else {
             //this is a foreign number
-            //and the idiot forgot the +
+            //and they forgot the +
             //or its just a random number
             
             phone = "+" + phone
