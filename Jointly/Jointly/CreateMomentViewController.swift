@@ -54,6 +54,8 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
         var swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
         swipe.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipe)
+        
+        
     }
     
     // MARK: nav bar style
@@ -132,7 +134,7 @@ class CreateMomentViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func nextButtonPressed(sender: AnyObject) {
         
-        if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String{
+        if let firstName = ABRecordCopyValue(person, kABPersonFirstNameProperty)?.takeRetainedValue() as? String {
         }
         
         if person != nil {
